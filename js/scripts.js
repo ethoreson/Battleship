@@ -15,7 +15,7 @@ function Space() {
 }
 
 function Player(turn) {
-  this.turn = turn;
+  this.turn = turn; // what should this equal?
   this.totalHits = 0;
   this.grid = new Grid().initializeGrid();
 }
@@ -40,6 +40,10 @@ Grid.prototype.initializeGrid = function() {
   for(var r = 0; r < 10; r++) {
     var column = [];
     for(var c = 0; c < 10; c++) {
+      var space = new Space(r, c);
+      row.push(space.hasShip);
+      var space = new Space();
+      row.push(space);
       var space = new Space();
       column.push(space);
     }
@@ -88,22 +92,23 @@ Player.prototype.placeShip = function(ship) {
   }
 }
 
-function Space() {
-  this.hasShip = false;
-  this.isHit = false;
-  this.indicator;
-}
-
-
 //FRONTEND
 $(document).ready(function() {
   var player1 = new Player(true);
   player1Grid = new Grid();
   player1.grid = player1Grid.initializeGrid();
 
+
+
+
+// CONSOLIDATE INTO ONE. ASK JOE ABOUT TIC TAC TOE VERSION
+  $("#player1grid").on('click', function() {
+    alert(event.currentTarget);
+  });
+
+
   $("#carrierButton1").click(function(event) {
     event.preventDefault();
-
     var carrierRowString = $(".carrier_row").val();
     var carrierRow = (parseInt(carrierRowString) - 1);
     var carrierColumnString = $(".carrier_col").val();
