@@ -11,15 +11,15 @@
     <div class="container">
       <h1>Battleship</h1>
       <div class="row">
-        <div class="col-lg-2">
+        <div class="col-lg-3">
+          <ul>
           <div class="player1startupscreen">
-            <h2>Player 1, Place Your Ships</h2>
-            <form>
-            <ul>
+            <li>Player 1, Place Your Ships</li>
+            <form id="carriersetup">
               <li>Carrier - 5</li>
               <div class="carrier">
                 <label>Enter Column:</label>
-                <select class="carrier_row">
+                <select class="carrier_col">
                   <option>A</option>
                   <option>B</option>
                   <option>C</option>
@@ -34,7 +34,6 @@
               </div>
               <div class="carrier">
                 <label>Enter Row:</label>
-                <br>
                 <select class="carrier_row">
                   <option>1</option>
                   <option>2</option>
@@ -50,16 +49,19 @@
               </div>
               <div class="radio">
                 <label>
-                  <input type="radio" name="horizontal" value="horizontal">Horizontal</input>
+                  <input type="radio" name="carrierorientation" value="horizontal" checked="checked">horizontal</input>
                 </label>
                 <label>
-                  <input type="radio" name="vertical" value="vertical">Vertical</input>
+                  <input type="radio" name="carrierorientation" value="vertical">vertical</input>
                 </label>
               </div>
+              <button id="carrierButton1" type="submit" class="btn">Submit</button>
+            </form>
+            <form id="battleshipsetup">
               <li>Battleship - 4</li>
               <div class="battleship">
                 <label>Enter Column:</label>
-                <select class="battleship_row">
+                <select class="battleship_col">
                   <option>A</option>
                   <option>B</option>
                   <option>C</option>
@@ -71,18 +73,9 @@
                   <option>I</option>
                   <option>J</option>
                 </select>
-              </div>
-              <div class="radio">
-                <label>
-                  <input type="radio" name="horizontal" value="horizontal">Horizontal</input>
-                </label>
-                <label>
-                  <input type="radio" name="vertical" value="vertical">Vertical</input>
-                </label>
               </div>
               <div class="battleship">
                 <label>Enter Row:</label>
-                <br>
                 <select class="battleship_row">
                   <option>1</option>
                   <option>2</option>
@@ -98,16 +91,19 @@
               </div>
               <div class="radio">
                 <label>
-                  <input type="radio" name="horizontal" value="horizontal">Horizontal</input>
+                  <input type="radio" name="battleshiporientation" value="horizontal" checked="checked">horizontal</input>
                 </label>
                 <label>
-                  <input type="radio" name="vertical" value="vertical">Vertical</input>
+                  <input type="radio" name="battleshiporientation" value="vertical">vertical</input>
                 </label>
               </div>
+              <button id="battleshipButton1" type="submit" class="btn">Submit</button>
+            </form>
+            <form id="cruisersetup">
               <li>Cruiser - 3</li>
               <div class="cruiser">
                 <label>Enter Column:</label>
-                <select class="cruiser_row">
+                <select class="cruiser_col">
                   <option>A</option>
                   <option>B</option>
                   <option>C</option>
@@ -122,7 +118,6 @@
               </div>
               <div class="cruiser">
                 <label>Enter Row:</label>
-                <br>
                 <select class="cruiser_row">
                   <option>1</option>
                   <option>2</option>
@@ -138,16 +133,19 @@
               </div>
               <div class="radio">
                 <label>
-                  <input type="radio" name="horizontal" value="horizontal">Horizontal</input>
+                  <input type="radio" name="cruiserorientation" value="horizontal" checked="checked">horizontal</input>
                 </label>
                 <label>
-                  <input type="radio" name="vertical" value="vertical">Vertical</input>
+                  <input type="radio" name="cruiserorientation" value="vertical">vertical</input>
                 </label>
               </div>
+              <button id="cruiserButton1" type="submit" class="btn">Submit</button>
+            </form>
+            <form id="submarinesetup">
               <li>Submarine - 3</li>
               <div class="submarine">
                 <label>Enter Column:</label>
-                <select class="submarine_row">
+                <select class="submarine_col">
                   <option>A</option>
                   <option>B</option>
                   <option>C</option>
@@ -162,7 +160,6 @@
               </div>
               <div class="submarine">
                 <label>Enter Row:</label>
-                <br>
                 <select class="submarine_row">
                   <option>1</option>
                   <option>2</option>
@@ -178,16 +175,19 @@
               </div>
               <div class="radio">
                 <label>
-                  <input type="radio" name="horizontal" value="horizontal">Horizontal</input>
+                  <input type="radio" name="submarineorientation" value="horizontal" checked="checked">horizontal</input>
                 </label>
                 <label>
-                  <input type="radio" name="vertical" value="vertical">Vertical</input>
+                  <input type="radio" name="submarineorientation" value="vertical">vertical</input>
                 </label>
               </div>
+              <button id="submarineButton1" type="submit" class="btn">Submit</button>
+            </form>
+            <form id="destroyersetup">
               <li>Destroyer - 2</li>
               <div class="destroyer">
                 <label>Enter Column:</label>
-                <select class="destroyer_row">
+                <select class="destroyer_col">
                   <option>A</option>
                   <option>B</option>
                   <option>C</option>
@@ -202,7 +202,6 @@
               </div>
               <div class="destroyer">
                 <label>Enter Row:</label>
-                <br>
                 <select class="destroyer_row">
                   <option>1</option>
                   <option>2</option>
@@ -216,12 +215,24 @@
                   <option>10</option>
                 </select>
               </div>
-            </ul>
+              <div class="radio">
+                <label>
+                  <input type="radio" name="destroyerorientation" value="horizontal" checked="checked">horizontal</input>
+                </label>
+                <label>
+                  <input type="radio" name="destroyerorientation" value="vertical">vertical</input>
+                </label>
+              </div>
+            <button id="destroyerButton1" type="submit" class="btn">Submit</button>
           </form>
-           <button id="submitButton" type="submit" class="btn">Submit</button>
+          <button id="playbutton" type="submit" class="btn">Play</button>
           </div>
-        </div>
-        <div class="col-lg-10">
+        </ul>
+      </div>
+
+
+        <!-- GRID -->
+        <div class="col-lg-9">
           <table id="player1grid">
               <tr>
                   <th></th>
@@ -514,7 +525,8 @@
               </tr>
           </table>
         </div>
-      </div>
-    </div>
+
+    </div> <!--row -->
+    </div> <!-- container -->
   </body>
 </html>
