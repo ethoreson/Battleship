@@ -62,7 +62,7 @@ $(document).ready(function() {
     var carrierColumn = (carrierColumnString.charCodeAt(0) - 65);
     var carrierSize = 5;
     var carrierIndicator = "carrier";
-    var hOrV = $("input:radio[name=orientation]:checked").val();
+    var hOrV = $("input:radio[name=carrierorientation]:checked").val();
     var carrierShip = new Ship(carrierRow, carrierColumn, carrierSize, carrierIndicator, hOrV);
     console.log(carrierShip);
 });
@@ -76,7 +76,7 @@ $("#battleshipButton1").click(function(event) {
   var battleshipColumn = (battleshipColumnString.charCodeAt(0) - 65);
   var battleshipSize = 4;
   var battleshipIndicator = "battleship";
-  var hOrV = $("input:radio[name=orientation]:checked").val();
+  var hOrV = $("input:radio[name=battleshiporientation]:checked").val();
   var battleshipShip = new Ship(battleshipRow, battleshipColumn, battleshipSize, battleshipIndicator, hOrV);
   console.log(battleshipShip);
 });
@@ -90,7 +90,7 @@ $("#cruiserButton1").click(function(event) {
   var cruiserColumn = (cruiserColumnString.charCodeAt(0) - 65);
   var cruiserSize = 3;
   var cruiserIndicator = "cruiser";
-  var hOrV = $("input:radio[name=orientation]:checked").val();
+  var hOrV = $("input:radio[name=cruiserorientation]:checked").val();
   var cruiserShip = new Ship(cruiserRow, cruiserColumn, cruiserSize, cruiserIndicator, hOrV);
   console.log(cruiserShip);
 });
@@ -104,7 +104,7 @@ $("#submarineButton1").click(function(event) {
   var submarineColumn = (submarineColumnString.charCodeAt(0) - 65);
   var submarineSize = 3;
   var submarineIndicator = "submarine";
-  var hOrV = $("input:radio[name=orientation]:checked").val();
+  var hOrV = $("input:radio[name=submarineorientation]:checked").val();
   var submarineShip = new Ship(submarineRow, submarineColumn, submarineSize, submarineIndicator, hOrV);
   console.log(submarineShip);
 });
@@ -118,7 +118,7 @@ $("#destroyerButton1").click(function(event) {
   var destroyerColumn = (destroyerColumnString.charCodeAt(0) - 65);
   var destroyerSize = 2;
   var destroyerIndicator = "destroyer";
-  var hOrV = $("input:radio[name=orientation]:checked").val();
+  var hOrV = $("input:radio[name=destroyerorientation]:checked").val();
   var destroyerShip = new Ship(destroyerRow, destroyerColumn, destroyerSize, destroyerIndicator, hOrV);
   console.log(destroyerShip);
 });
