@@ -26,7 +26,7 @@ Grid.prototype.initializeGrid = function() {
   for(var r = 0; r < 10; r++) {
     var row = [];
     for(var c = 0; c < 10; c++) {
-      var space = new Space(r, c);
+      var space = new Space();
       row.push(space);
     }
     spaces.push(row);
@@ -34,13 +34,41 @@ Grid.prototype.initializeGrid = function() {
   return spaces;
 }
 
-Grid.prototype.placeShip = function(ship) {
-
+Grid.prototype.checkPlacement = function(ship) {
+  if (ship.isVertical === "vertical") {
+    for(var i = 0; i < ship.size; i++) {
+      if(ship.row + i > 9) {
+        //return "cannot place here";
+        console.log("cannot place ship here");
+      }
+      else if(this.spaces[ship.row + i][ship.column].hasShip === true) {
+        //return "cannot place here";
+        console.log("cannot place ship here");
+      }
+    }
+    console.log("ship can be placed");
+    //Grid.placeShip(ship);
+  } else if (ship.isVertical === "horizontal") {
+      for(var i = 0; i < ship.size; i++) {
+        if(ship.column + i > 9) {
+          //return "cannot place here";
+          console.log("cannot place ship here");
+        }
+        else if(this.spaces[ship.row][ship.column + i].hasShip === true) {
+          //return "cannot place here";
+          console.log("cannot place ship here");
+        }
+      }
+      console.log("ship can be placed");
+      //Grid.placeShip(ship);
+    }
 }
 
-function Space(row, column) {
-  this.row = row;
-  this.column = column;
+
+Grid.prototype.placeShip = function(ship) {
+}
+
+function Space() {
   this.hasShip = false;
   this.isHit = false;
 }
