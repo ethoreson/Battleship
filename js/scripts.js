@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-// userinterface logic:
-=======
-//BACKEND
 function Ship(row, column, size, indicator, isVertical) {
   this.row = row;
   this.column = column;
@@ -60,4 +56,3 @@ $(document).ready(function() {
   player1Grid = new Grid();
   player1.grid = player1Grid.initializeGrid();
 });
->>>>>>> 5dbe0fd85ea62f7064402ba6cd8d46423c79ec62
