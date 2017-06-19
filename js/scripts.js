@@ -11,7 +11,7 @@ function Ship(row, column, size, indicator, isVertical) {
 function Player(turn) {
   this.turn = turn;
   this.totalHits = 0;
-  this.grid = new Grid.initializeGrid();
+  this.grid;
 }
 
 Player.prototype.getHitCount = function() {
@@ -22,13 +22,15 @@ function Grid() {
   this.spaces = [];
 }
 
-Grid.prototype.initializeGrid() {
+Grid.prototype.initializeGrid = function() {
   var spaces = [];
   for(var r = 0; r < 10; r++) {
+    var row = [];
     for(var c = 0; c < 10; c++) {
-      var space = new Space(r, c)
-      spaces.push(space);
+      var space = new Space(r, c);
+      row.push(space);
     }
+    spaces.push(row);
   }
   return spaces;
 }
@@ -51,5 +53,7 @@ function Space(row, column) {
 
 //FRONTEND
 $(document).ready(function() {
-  var player1 = new Player();
+  var player1 = new Player(true);
+  player1Grid = new Grid();
+  player1.grid = player1Grid.initializeGrid();
 });
