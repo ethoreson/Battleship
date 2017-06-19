@@ -42,7 +42,6 @@ Grid.prototype.initializeGrid = function() {
 }
 
 Player.prototype.checkPlacement = function(ship) {
-  console.log(this.grid);
   if (ship.isVertical === "vertical") {
     for(var i = 0; i < ship.size; i++) {
       if(ship.row + i > 9) {
@@ -66,7 +65,6 @@ Player.prototype.checkPlacement = function(ship) {
     } else {
       return false;
     }
-
 }
 
 Player.prototype.placeShip = function(ship) {
@@ -81,6 +79,12 @@ Player.prototype.placeShip = function(ship) {
       this.grid[ship.column][ship.row + i].indicator = ship.indicator;
     }
   }
+}
+
+function Space() {
+  this.hasShip = false;
+  this.isHit = false;
+  this.indicator;
 }
 
 
