@@ -8,7 +8,7 @@ function Ship(row, column, size, indicator, isVertical) {
 }
 
 function Player(turn) {
-  this.turn = turn;
+  this.turn = turn; // what should this equal?
   this.totalHits = 0;
   this.grid;
 }
@@ -35,17 +35,71 @@ Grid.prototype.initializeGrid = function() {
     for(var c = 0; c < 10; c++) {
       var space = new Space(r, c);
       row.push(space.hasShip);
+      var space = new Space();
+      row.push(space);
     }
     spaces.push(row);
   }
   return spaces;
 }
 
-Grid.prototype.placeShip = function(ship) {
-
+Grid.prototype.checkPlacement = function(ship) {
+  if (ship.isVertical === "vertical") {
+    for(var i = 0; i < ship.size; i++) {
+      if(ship.row + i > 9) {
+        //return "cannot place here";
+        console.log("cannot place ship here");
+      }
+      else if(this.spaces[ship.row + i][ship.column].hasShip === true) {
+        //return "cannot place here";
+        console.log("cannot place ship here");
+      }
+    }
+    console.log("ship can be placed");
+    //Grid.placeShip(ship);
+  } else if (ship.isVertical === "horizontal") {
+      for(var i = 0; i < ship.size; i++) {
+        if(ship.column + i > 9) {
+          //return "cannot place here";
+          console.log("cannot place ship here");
+        }
+        else if(this.spaces[ship.row][ship.column + i].hasShip === true) {
+          //return "cannot place here";
+          console.log("cannot place ship here");
+        }
+      }
+      console.log("ship can be placed");
+      //Grid.placeShip(ship);
+    }
 }
 
+Grid.prototype.placeShip = function(ship) {
+    if (ship.isVertical === "vertical") {
+    for(var i = 0; i < ship.size; i++) {
+      this.spaces[ship.row + i][ship.column].hasShip = true;
+      this.spaces[ship.row + i][ship.column].indicator = ship.indicator;
+    }
+  } else if (ship.isVertical === "horizontal") {
+    for(var i = 0; i < ship.size; i++) {
+      this.spaces[ship.row][ship.column + i].hasShip = true;
+      this.spaces[ship.row][ship.column + i].indicator = ship.indicator;
+    }
+  }
+}
 
+Grid.prototype.placeShip = function(ship) {
+    if (ship.isVertical === "vertical") {
+    for(var i = 0; i < ship.size; i++) {
+      this.spaces[ship.row + i][ship.column].hasShip = true;
+      this.spaces[ship.row + i][ship.column].indicator = ship.indicator;
+    }
+  } else if (ship.isVertical === "horizontal") {
+    for(var i = 0; i < ship.size; i++) {
+      this.spaces[ship.row][ship.column + i].hasShip = true;
+      this.spaces[ship.row][ship.column + i].indicator = ship.indicator;
+    }
+  }
+}
 
 //FRONTEND
 $(document).ready(function() {
@@ -53,9 +107,13 @@ $(document).ready(function() {
   player1Grid = new Grid();
   player1.grid = player1Grid.initializeGrid();
 
+
+
+
+// CONSOLIDATE INTO ONE. ASK JOE ABOUT TIC TAC TOE VERSION
+
   $("#carrierButton1").click(function(event) {
     event.preventDefault();
-
     var carrierRowString = $(".carrier_row").val();
     var carrierRow = (parseInt(carrierRowString) - 1);
     var carrierColumnString = $(".carrier_col").val();
