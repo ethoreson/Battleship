@@ -20,13 +20,6 @@ function Player(turn) {
   this.grid = new Grid().initializeGrid();
 }
 
-function Space(row, column) {
-  this.row = row;
-  this.column = column;
-  this.hasShip = false;
-  this.isHit = false;
-}
-
 Player.prototype.getHitCount = function() {
   return this.totalHits;
 }
@@ -86,12 +79,6 @@ Player.prototype.placeShip = function(ship) {
       this.grid[ship.column][ship.row + i].indicator = ship.indicator;
     }
   }
-}
-
-function Space() {
-  this.hasShip = false;
-  this.isHit = false;
-  this.indicator;
 }
 
 
