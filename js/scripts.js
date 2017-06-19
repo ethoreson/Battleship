@@ -1,4 +1,3 @@
-//BACKEND
 function Ship(row, column, size, indicator, isVertical) {
   this.row = row;
   this.column = column;

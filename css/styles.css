@@ -16,3 +16,9 @@ th {
 #player1grid {
   display: none;
 }
+
+li {
+  font-size: 18px;
+  font-weight: bold;
+  border-top: 1px solid green;
+}
