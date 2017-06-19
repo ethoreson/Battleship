@@ -1,3 +1,4 @@
+//BACKEND
 function Ship(row, column, size, indicator, isVertical) {
   this.row = row;
   this.column = column;
@@ -7,10 +8,16 @@ function Ship(row, column, size, indicator, isVertical) {
   this.sunk = false;
 }
 
+function Space() {
+  this.hasShip = false;
+  this.isHit = false;
+  this.indicator;
+}
+
 function Player(turn) {
   this.turn = turn;
   this.totalHits = 0;
-  this.grid;
+  this.grid = new Grid().initializeGrid();
 }
 
 Player.prototype.getHitCount = function() {
@@ -24,63 +31,64 @@ function Grid() {
 Grid.prototype.initializeGrid = function() {
   var spaces = [];
   for(var r = 0; r < 10; r++) {
-    var row = [];
+    var column = [];
     for(var c = 0; c < 10; c++) {
       var space = new Space();
-      row.push(space);
+      column.push(space);
     }
-    spaces.push(row);
+    spaces.push(column);
   }
   return spaces;
 }
 
-Grid.prototype.checkPlacement = function(ship) {
+Player.prototype.checkPlacement = function(ship) {
+  console.log(this.grid);
   if (ship.isVertical === "vertical") {
     for(var i = 0; i < ship.size; i++) {
       if(ship.row + i > 9) {
-        //return "cannot place here";
-        console.log("cannot place ship here");
+        return false;
       }
-      else if(this.spaces[ship.row + i][ship.column].hasShip === true) {
-        //return "cannot place here";
-        console.log("cannot place ship here");
+      else if(this.grid[ship.column + i][ship.row].hasShip === true) {
+        return false;
       }
     }
-    console.log("ship can be placed");
-    //Grid.placeShip(ship);
+    return true;
   } else if (ship.isVertical === "horizontal") {
       for(var i = 0; i < ship.size; i++) {
         if(ship.column + i > 9) {
-          //return "cannot place here";
-          console.log("cannot place ship here");
+          return false;
         }
-        else if(this.spaces[ship.row][ship.column + i].hasShip === true) {
-          //return "cannot place here";
-          console.log("cannot place ship here");
+        else if(this.grid[ship.column][ship.row + i].hasShip === true) {
+          return false;
         }
       }
-      console.log("ship can be placed");
-      //Grid.placeShip(ship);
+      return true;
+    } else {
+      return false;
     }
+
 }
 
-
-Grid.prototype.placeShip = function(ship) {
+Player.prototype.placeShip = function(ship) {
+    if (ship.isVertical === "vertical") {
+    for(var i = 0; i < ship.size; i++) {
+      this.grid[ship.column + i][ship.row].hasShip = true;
+      this.grid[ship.column + i][ship.row].indicator = ship.indicator;
+    }
+  } else if (ship.isVertical === "horizontal") {
+    for(var i = 0; i < ship.size; i++) {
+      this.grid[ship.column][ship.row + i].hasShip = true;
+      this.grid[ship.column][ship.row + i].indicator = ship.indicator;
+    }
+  }
 }
-
-function Space() {
-  this.hasShip = false;
-  this.isHit = false;
-}
-
-
-
-
 
 
 //FRONTEND
 $(document).ready(function() {
   var player1 = new Player(true);
-  player1Grid = new Grid();
-  player1.grid = player1Grid.initializeGrid();
+  var battleship = new Ship(5,0,5,'b',"horizontal");
+  if(player1.checkPlacement(battleship)) {
+    player1.placeShip(battleship);
+  }
 });
