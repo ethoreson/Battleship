@@ -64,13 +64,38 @@ Grid.prototype.checkPlacement = function(ship) {
     }
 }
 
+Grid.prototype.placeShip = function(ship) {
+    if (ship.isVertical === "vertical") {
+    for(var i = 0; i < ship.size; i++) {
+      this.spaces[ship.row + i][ship.column].hasShip = true;
+      this.spaces[ship.row + i][ship.column].indicator = ship.indicator;
+    }
+  } else if (ship.isVertical === "horizontal") {
+    for(var i = 0; i < ship.size; i++) {
+      this.spaces[ship.row][ship.column + i].hasShip = true;
+      this.spaces[ship.row][ship.column + i].indicator = ship.indicator;
+    }
+  }
+}
 
 Grid.prototype.placeShip = function(ship) {
+    if (ship.isVertical === "vertical") {
+    for(var i = 0; i < ship.size; i++) {
+      this.spaces[ship.row + i][ship.column].hasShip = true;
+      this.spaces[ship.row + i][ship.column].indicator = ship.indicator;
+    }
+  } else if (ship.isVertical === "horizontal") {
+    for(var i = 0; i < ship.size; i++) {
+      this.spaces[ship.row][ship.column + i].hasShip = true;
+      this.spaces[ship.row][ship.column + i].indicator = ship.indicator;
+    }
+  }
 }
 
 function Space() {
   this.hasShip = false;
   this.isHit = false;
+  this.indicator;
 }
 
 
