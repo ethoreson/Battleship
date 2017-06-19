@@ -111,6 +111,10 @@ $(document).ready(function() {
 
 
 // CONSOLIDATE INTO ONE. ASK JOE ABOUT TIC TAC TOE VERSION
+  $("#player1grid").on('click', function() {
+    alert(event.currentTarget);
+  });
+
 
   $("#carrierButton1").click(function(event) {
     event.preventDefault();
