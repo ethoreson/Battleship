@@ -67,6 +67,11 @@ ol > li {
   list-style-type: none;
 }
 
+#whoseTurn {
+  font-size: 24px;
+  font-weight: bold;
+}
+
 form {
   margin: 10px;
 }
