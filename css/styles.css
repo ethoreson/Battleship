@@ -4,6 +4,14 @@ body {
   background-size: cover;
 }
 
+#one, #two, #three, #four, #five, #six, #seven, #eight, #nine, #ten {
+  padding-left: 30px;
+  border: 1px solid black;
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
+
+
 .container {
   background-color: white;
 }
