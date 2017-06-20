@@ -20,8 +20,15 @@ function Player(turn) {
   this.grid = new Grid().initializeGrid();
 }
 
-Player.prototype.getHitCount = function() {
-  return this.totalHits;
+// Player.prototype.getHitCount = function() {
+//   return this.totalHits;
+// }
+
+Player.prototype.markHit = function(spaceId) {
+  var column = spaceId[0];
+  var row = spaceId[1];
+  console.log(column);
+  console.log(row);
 }
 
 function Grid() {
@@ -108,7 +115,8 @@ $(document).ready(function() {
 // CONSOLIDATE INTO ONE. ASK JOE ABOUT TIC TAC TOE VERSION
   $("#player1grid").on('click', '.space', function(event) {
     var space = $(event.currentTarget);
-    console.log(space[0]["id"]);
+    var id = space[0]["id"];
+    player1.markHit(id);
 
   });
 
