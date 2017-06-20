@@ -15,7 +15,7 @@ function Space() {
 }
 
 function Player(turn) {
-  this.turn = turn; // what should this equal?
+  this.turn = turn;
   this.totalHits = 0;
   this.grid = new Grid().initializeGrid();
 }
@@ -83,11 +83,32 @@ Player.prototype.placeShip = function(ship) {
 
 //FRONTEND
 $(document).ready(function() {
-// CONSOLIDATE INTO ONE. ASK JOE ABOUT TIC TAC TOE VERSION
-  $("#player1grid").on('click', function() {
-    alert(event.currentTarget);
-  });
+  player1 = new Player(true);
+  player1Grid = player1.grid;
+//  console.log(player1Grid[0][0]);
+  for (r=0; r<10; r++) {
+    for (c=0; c<10; c++) {
+    $("#testtable").append("<td id=" + r + c + "></td>");
+    }
+  }
 
+
+// CONSOLIDATE INTO ONE. ASK JOE ABOUT TIC TAC TOE VERSION
+  // $("#player1grid").on('click', function() {
+  //   alert(event.currentTarget);
+  // });
+
+// Player.prototype.linkCoordinates = function(grid) {
+//   for (r=0;r<10;r++) {
+//     for (c=0;c<10;c++) {
+//       var coord = document.getElementById(grid).rows[r].cells[c];
+//       console.log(coord);
+//     }
+//   }
+//   return coord;
+// };
+//
+// player1.linkCoordinates(player1Grid);
 
   $("#carrierButton1").click(function(event) {
     event.preventDefault();
