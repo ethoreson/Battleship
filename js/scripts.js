@@ -53,7 +53,7 @@ Player.prototype.checkPlacement = function(ship) {
       if(ship.row + i > 9) {
         return false;
       }
-      else if(this.grid[ship.column + i][ship.row].hasShip === true) {
+      else if(this.grid[ship.column][ship.row + i].hasShip === true) {
         return false;
       }
     }
@@ -63,7 +63,7 @@ Player.prototype.checkPlacement = function(ship) {
         if(ship.column + i > 9) {
           return false;
         }
-        else if(this.grid[ship.column][ship.row + i].hasShip === true) {
+        else if(this.grid[ship.column + i][ship.row].hasShip === true) {
           return false;
         }
       }
@@ -94,11 +94,11 @@ var createTable = function(grid) {
     output += "<tr>";
     for(var c = 0; c < 10; c++) {
       output += '<th id="' + c + r + '" class="space ';
-      if(grid[r][c].hasShip === true) {
+      if(grid[c][r].hasShip === true) {
           output += 'greenClass';
       }
-      if(grid[r][c].isHit === true) {
-        if(grid[r][c].hasShip === true) {
+      if(grid[c][r].isHit === true) {
+        if(grid[c][r].hasShip === true) {
           output += 'redClass';
         } else {
           output += 'blueClass';
