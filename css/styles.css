@@ -14,7 +14,7 @@ body {
 
 .pic {
   height: 50px;
-  width: 200px;
+  width: 150px;
 }
 
 .greenClass {
@@ -32,19 +32,28 @@ body {
   opacity: .7;
 }
 
-table, th, td {
+table, td {
   border: 1px solid black;
   padding: 10px;
 }
+
+.space {
+  border: 1px solid black;
+  height: 50px;
+  width: 50px;
+}
+
+
+h2 {
+  font-size: 16px;
+}
+
 
 table {
   table-layout: fixed;
   width: 600px;
 }
 
-th {
-  border: 3px solid black;
-}
 
 li {
   font-size: 18px;
