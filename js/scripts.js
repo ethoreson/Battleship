@@ -27,8 +27,6 @@ function Player(turn) {
 Player.prototype.markHit = function(spaceId) {
   var column = spaceId[0];
   var row = spaceId[1];
-  console.log(column);
-  console.log(row);
   this.grid[column][row].isHit = true;
 }
 
