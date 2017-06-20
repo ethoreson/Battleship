@@ -29,6 +29,7 @@ Player.prototype.markHit = function(spaceId) {
   var row = spaceId[1];
   console.log(column);
   console.log(row);
+  this.grid[column][row].isHit = true;
 }
 
 function Grid() {
@@ -93,7 +94,7 @@ var createTable = function(grid) {
   for(var r = 0; r < 10; r++) {
     output += "<tr>";
     for(var c = 0; c < 10; c++) {
-      output += '<th id="' + r + c + '" class="space"></th>';
+      output += '<th id="' + c + r + '" class="space"></th>';
       if(grid[r][c].hasShip === true) {
         $("#" + r + c).text(grid[r][c].indicator);
       }
@@ -117,7 +118,7 @@ $(document).ready(function() {
     var space = $(event.currentTarget);
     var id = space[0]["id"];
     player1.markHit(id);
-
+    //create table with updated space information
   });
 
   var player1 = new Player(true);
