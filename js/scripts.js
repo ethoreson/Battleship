@@ -8,14 +8,14 @@ function Ship(row, column, size, indicator, isVertical) {
   this.sunk = false;
 }
 
-function Space() {
+function Space(indicator) {
   this.hasShip = false;
   this.isHit = false;
-  this.indicator;
+  this.indicator = indicator;
 }
 
 function Player(turn) {
-  this.turn = turn; // what should this equal?
+  this.turn = turn;
   this.totalHits = 0;
   this.grid = new Grid().initializeGrid();
 }
@@ -109,9 +109,14 @@ var createTable = function(grid) {
   return output;
 }
 
+
+
 //FRONTEND
 $(document).ready(function() {
-// CONSOLIDATE INTO ONE. ASK JOE ABOUT TIC TAC TOE VERSION
+  player1 = new Player(true);
+  player1Grid = player1.grid;
+
+
   $("#player1grid").on('click', '.space', function(event) {
     var space = $(event.currentTarget);
     var id = space[0]["id"];
@@ -126,7 +131,6 @@ $(document).ready(function() {
 
   $("#player1grid").append(createTable(player1.grid));
 
-
   $("#carrierButton1").click(function(event) {
     event.preventDefault();
     var carrierRowString = $(".carrier_row").val();
@@ -137,7 +141,9 @@ $(document).ready(function() {
     var carrierIndicator = "carrier";
     var hOrV = $("input:radio[name=carrierorientation]:checked").val();
     var carrierShip = new Ship(carrierRow, carrierColumn, carrierSize, carrierIndicator, hOrV);
+    player1.placeShip(carrierShip);
     console.log(carrierShip);
+    // the space with an id of carrierRow + carrierColumn hasShip = true
 });
 
 $("#battleshipButton1").click(function(event) {
@@ -196,7 +202,17 @@ $("#destroyerButton1").click(function(event) {
   console.log(destroyerShip);
 });
 
-// //    $(".player1startupscreen").hide();
-// //    $(".player2startupscreen").show();
+$("#playbutton").click(function(event) {
+  event.preventDefault();
+  $(".player1startupscreen").hide();
+  $(".player2startupscreen").show();
+});
+
+$("#playbutton2").click(function(event) {
+  event.preventDefault();
+  $(".player2startuscreen").hide();
+  $(".player1updates").show();
+});
+
 
 });

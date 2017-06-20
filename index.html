@@ -9,7 +9,7 @@
   </head>
   <body>
     <div class="container">
-      <h1>Battleship</h1>
+      <img id="logo" src="img/logo.png">
       <div class="row">
         <div class="col-lg-3">
           <ul>
@@ -224,162 +224,247 @@
                 </label>
               </div>
             <button id="destroyerButton1" type="submit" class="btn">Submit</button>
+            <button id="playbutton" type="submit" class="btn">Player 2 setup</button>
           </form>
-          <button id="playbutton" type="submit" class="btn">Play</button>
+        </div>
+
+
+          <div class="player2startupscreen" id="showthis">
+            <li>Player 2, Place Your Ships</li>
+            <form id="carriersetup2">
+              <li>Carrier - 5</li>
+              <div class="carrier">
+                <label>Enter Column:</label>
+                <select class="carrier_col">
+                  <option>A</option>
+                  <option>B</option>
+                  <option>C</option>
+                  <option>D</option>
+                  <option>E</option>
+                  <option>F</option>
+                  <option>G</option>
+                  <option>H</option>
+                  <option>I</option>
+                  <option>J</option>
+                </select>
+              </div>
+              <div class="carrier">
+                <label>Enter Row:</label>
+                <select class="carrier_row">
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                  <option>6</option>
+                  <option>7</option>
+                  <option>8</option>
+                  <option>9</option>
+                  <option>10</option>
+                </select>
+              </div>
+              <div class="radio">
+                <label>
+                  <input type="radio" name="carrierorientation" value="horizontal" checked="checked">horizontal</input>
+                </label>
+                <label>
+                  <input type="radio" name="carrierorientation" value="vertical">vertical</input>
+                </label>
+              </div>
+              <button id="carrierButton2" type="submit" class="btn">Submit</button>
+            </form>
+            <form id="battleshipsetup2">
+              <li>Battleship - 4</li>
+              <div class="battleship">
+                <label>Enter Column:</label>
+                <select class="battleship_col">
+                  <option>A</option>
+                  <option>B</option>
+                  <option>C</option>
+                  <option>D</option>
+                  <option>E</option>
+                  <option>F</option>
+                  <option>G</option>
+                  <option>H</option>
+                  <option>I</option>
+                  <option>J</option>
+                </select>
+              </div>
+              <div class="battleship">
+                <label>Enter Row:</label>
+                <select class="battleship_row">
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                  <option>6</option>
+                  <option>7</option>
+                  <option>8</option>
+                  <option>9</option>
+                  <option>10</option>
+                </select>
+              </div>
+              <div class="radio">
+                <label>
+                  <input type="radio" name="battleshiporientation" value="horizontal" checked="checked">horizontal</input>
+                </label>
+                <label>
+                  <input type="radio" name="battleshiporientation" value="vertical">vertical</input>
+                </label>
+              </div>
+              <button id="battleshipButton2" type="submit" class="btn">Submit</button>
+            </form>
+            <form id="cruisersetup2">
+              <li>Cruiser - 3</li>
+              <div class="cruiser">
+                <label>Enter Column:</label>
+                <select class="cruiser_col">
+                  <option>A</option>
+                  <option>B</option>
+                  <option>C</option>
+                  <option>D</option>
+                  <option>E</option>
+                  <option>F</option>
+                  <option>G</option>
+                  <option>H</option>
+                  <option>I</option>
+                  <option>J</option>
+                </select>
+              </div>
+              <div class="cruiser">
+                <label>Enter Row:</label>
+                <select class="cruiser_row">
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                  <option>6</option>
+                  <option>7</option>
+                  <option>8</option>
+                  <option>9</option>
+                  <option>10</option>
+                </select>
+              </div>
+              <div class="radio">
+                <label>
+                  <input type="radio" name="cruiserorientation" value="horizontal" checked="checked">horizontal</input>
+                </label>
+                <label>
+                  <input type="radio" name="cruiserorientation" value="vertical">vertical</input>
+                </label>
+              </div>
+
+              <button id="cruiserButton2" type="submit" class="btn">Submit</button>
+            </form>
+            <form id="submarinesetup2">
+              <li>Submarine - 3</li>
+              <div class="submarine">
+                <label>Enter Column:</label>
+                <select class="submarine_col">
+                  <option>A</option>
+                  <option>B</option>
+                  <option>C</option>
+                  <option>D</option>
+                  <option>E</option>
+                  <option>F</option>
+                  <option>G</option>
+                  <option>H</option>
+                  <option>I</option>
+                  <option>J</option>
+                </select>
+              </div>
+              <div class="submarine">
+                <label>Enter Row:</label>
+                <select class="submarine_row">
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                  <option>6</option>
+                  <option>7</option>
+                  <option>8</option>
+                  <option>9</option>
+                  <option>10</option>
+                </select>
+              </div>
+              <div class="radio">
+                <label>
+                  <input type="radio" name="submarineorientation" value="horizontal" checked="checked">horizontal</input>
+                </label>
+                <label>
+                  <input type="radio" name="submarineorientation" value="vertical">vertical</input>
+                </label>
+              </div>
+              <button id="submarineButton2" type="submit" class="btn">Submit</button>
+            </form>
+            <form id="destroyersetup2">
+              <li>Destroyer - 2</li>
+              <div class="destroyer">
+                <label>Enter Column:</label>
+                <select class="destroyer_col">
+                  <option>A</option>
+                  <option>B</option>
+                  <option>C</option>
+                  <option>D</option>
+                  <option>E</option>
+                  <option>F</option>
+                  <option>G</option>
+                  <option>H</option>
+                  <option>I</option>
+                  <option>J</option>
+                </select>
+              </div>
+              <div class="destroyer">
+                <label>Enter Row:</label>
+                <select class="destroyer_row">
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                  <option>6</option>
+                  <option>7</option>
+                  <option>8</option>
+                  <option>9</option>
+                  <option>10</option>
+                </select>
+              </div>
+              <div class="radio">
+                <label>
+                  <input type="radio" name="destroyerorientation" value="horizontal" checked="checked">horizontal</input>
+                </label>
+                <label>
+                  <input type="radio" name="destroyerorientation" value="vertical">vertical</input>
+                </label>
+              </div>
+            <button id="destroyerButton1" type="submit" class="btn">Submit</button>
+          </form>
+          <button id="playbutton2" type="submit" class="btn">Play!</button>
           </div>
         </ul>
+        </div>
+
+
+      <div class="player1updates">
+        <p>Player 1, your ships:</p>
+        <ol>
+          <li>Cruiser:</li>
+          <li><img class="pic" src="img/cruiser.png"></li>
+        </ol>
       </div>
 
+      <div class="player2updates">
+        <p>Player 2, your ships:</p>
+      </div>
 
         <!-- GRID -->
         <div class="col-lg-9">
-          <table id="player1grid">
-              <tr>
-                  <th></th>
-                  <th scope="col">A</th>
-                  <th scope="col">B</th>
-                  <th scope="col">C</th>
-                  <th scope="col">D</th>
-                  <th scope="col">E</th>
-                  <th scope="col">F</th>
-                  <th scope="col">G</th>
-                  <th scope="col">H</th>
-                  <th scope="col">I</th>
-                  <th scope="col">J</th>
-              </tr>
-              <tr>
-                  <th scope="row">1</th>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-              </tr>
-              <tr>
-                  <th scope="row">2</th>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-              </tr>
-              <tr>
-                  <th scope="row">3</th>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-              </tr>
-              <tr>
-                  <th scope="row">4</th>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-              </tr>
-              <tr>
-                  <th scope="row">5</th>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-              </tr>
-              <tr>
-                  <th scope="row">6</th>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-              </tr>
-              <tr>
-                  <th scope="row">7</th>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-              </tr>
-              <tr>
-                  <th scope="row">8</th>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-              </tr>
-              <tr>
-                  <th scope="row">9</th>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-              </tr>
-              <tr>
-                  <th scope="row">10</th>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-              </tr>
+          <table id="testtable">
           </table>
-
-          <table id="player2grid">
+          <table id="player1table">
               <tr>
                   <th></th>
                   <th scope="col">A</th>
@@ -393,18 +478,18 @@
                   <th scope="col">I</th>
                   <th scope="col">J</th>
               </tr>
-              <tr>
+              <tr id="row0">
                   <th scope="row">1</th>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
+                  <td id="r0c0"></td>
+                  <td id="r0c1"></td>
+                  <td id="r0c2"></td>
+                  <td id="r0c3"></td>
+                  <td id="r0c4"></td>
+                  <td id="r0c5"></td>
+                  <td id="r0c6"></td>
+                  <td id="r0c7"></td>
+                  <td id="r0c8"></td>
+                  <td id="r0c9"></td>
               </tr>
               <tr>
                   <th scope="row">2</th>
@@ -525,7 +610,7 @@
               </tr>
           </table>
         </div>
-
+      </div>
     </div> <!--row -->
     </div> <!-- container -->
   </body>
