@@ -88,21 +88,23 @@ Player.prototype.placeShip = function(ship) {
 }
 
 var createTable = function(grid) {
+  $("#table").empty();
   var output = "";
   for(var r = 0; r < 10; r++) {
     output += "<tr>";
     for(var c = 0; c < 10; c++) {
-      output += '<th id="' + c + r + '" class="space"></th>';
+      output += '<th id="' + c + r + '" class="space ';
       if(grid[r][c].hasShip === true) {
-        $("#" + r + c).text(grid[r][c].indicator);
+          output += 'greenClass';
       }
       if(grid[r][c].isHit === true) {
         if(grid[r][c].hasShip === true) {
-        $("#" + r + c).addClass(".redClass");
+          output += 'redClass';
         } else {
-        $("#" + r + c).addClass(".blueClass");
+          output += 'blueClass';
         }
       }
+      output += '"></th>';
     }
     output += "</tr>";
   }
@@ -113,23 +115,19 @@ var createTable = function(grid) {
 
 //FRONTEND
 $(document).ready(function() {
-  player1 = new Player(true);
-  player1Grid = player1.grid;
+  var player1 = new Player(true);
+//  var battleship = new Ship(0, 0, 4, "b","vertical");
 
 
-  $("#player1grid").on('click', '.space', function(event) {
+  $("#table").on('click', '.space', function(event) {
     var space = $(event.currentTarget);
     var id = space[0]["id"];
     player1.markHit(id);
-    //create table with updated space information
+    $("#table").append(createTable(player1.grid));
   });
 
-  var player1 = new Player(true);
-  var battleship = new Ship(0, 0, 4, "b","vertical");
-  player1.placeShip(battleship);
 
 
-  $("#player1grid").append(createTable(player1.grid));
 
   $("#carrierButton1").click(function(event) {
     event.preventDefault();
@@ -141,9 +139,13 @@ $(document).ready(function() {
     var carrierIndicator = "carrier";
     var hOrV = $("input:radio[name=carrierorientation]:checked").val();
     var carrierShip = new Ship(carrierRow, carrierColumn, carrierSize, carrierIndicator, hOrV);
-    player1.placeShip(carrierShip);
-    console.log(carrierShip);
-    // the space with an id of carrierRow + carrierColumn hasShip = true
+    if (player1.checkPlacement(carrierShip)) {
+      player1.placeShip(carrierShip);
+      $("#table").append(createTable(player1.grid));
+    } else {
+      alert("Not enough room");
+    }
+
 });
 
 $("#battleshipButton1").click(function(event) {
@@ -157,7 +159,12 @@ $("#battleshipButton1").click(function(event) {
   var battleshipIndicator = "battleship";
   var hOrV = $("input:radio[name=battleshiporientation]:checked").val();
   var battleshipShip = new Ship(battleshipRow, battleshipColumn, battleshipSize, battleshipIndicator, hOrV);
-  console.log(battleshipShip);
+  if (player1.checkPlacement(battleshipShip)) {
+    player1.placeShip(battleshipShip);
+    $("#table").append(createTable(player1.grid));
+  } else {
+    alert("Not enough room");
+  }
 });
 
 $("#cruiserButton1").click(function(event) {
@@ -171,7 +178,12 @@ $("#cruiserButton1").click(function(event) {
   var cruiserIndicator = "cruiser";
   var hOrV = $("input:radio[name=cruiserorientation]:checked").val();
   var cruiserShip = new Ship(cruiserRow, cruiserColumn, cruiserSize, cruiserIndicator, hOrV);
-  console.log(cruiserShip);
+  if (player1.checkPlacement(cruiserShip)) {
+    player1.placeShip(cruiserShip);
+    $("#table").append(createTable(player1.grid));
+  } else {
+    alert("Not enough room");
+  }
 });
 
 $("#submarineButton1").click(function(event) {
@@ -185,12 +197,16 @@ $("#submarineButton1").click(function(event) {
   var submarineIndicator = "submarine";
   var hOrV = $("input:radio[name=submarineorientation]:checked").val();
   var submarineShip = new Ship(submarineRow, submarineColumn, submarineSize, submarineIndicator, hOrV);
-  console.log(submarineShip);
+  if (player1.checkPlacement(submarineShip)) {
+    player1.placeShip(submarineShip);
+    $("#table").append(createTable(player1.grid));
+  } else {
+    alert("Not enough room");
+  }
 });
 
 $("#destroyerButton1").click(function(event) {
   event.preventDefault();
-
   var destroyerRowString = $(".destroyer_row").val();
   var destroyerRow = (parseInt(destroyerRowString) - 1);
   var destroyerColumnString = $(".destroyer_col").val();
@@ -199,7 +215,12 @@ $("#destroyerButton1").click(function(event) {
   var destroyerIndicator = "destroyer";
   var hOrV = $("input:radio[name=destroyerorientation]:checked").val();
   var destroyerShip = new Ship(destroyerRow, destroyerColumn, destroyerSize, destroyerIndicator, hOrV);
-  console.log(destroyerShip);
+  if (player1.checkPlacement(destroyerShip)) {
+    player1.placeShip(destroyerShip);
+    $("#table").append(createTable(player1.grid));
+  } else {
+    alert("Not enough room");
+  }
 });
 
 $("#playbutton").click(function(event) {

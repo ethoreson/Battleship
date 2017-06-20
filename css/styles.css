@@ -17,6 +17,21 @@ body {
   width: 200px;
 }
 
+.greenClass {
+  background-color: green;
+  opacity: .7;
+}
+
+.redClass {
+  background-color: red;
+  opacity: .7;
+}
+
+.blueClass {
+  background-color: blue;
+  opacity: .7;
+}
+
 table, th, td {
   border: 1px solid black;
   padding: 10px;
