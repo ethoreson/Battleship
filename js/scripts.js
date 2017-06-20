@@ -70,23 +70,54 @@ Player.prototype.checkPlacement = function(ship) {
 Player.prototype.placeShip = function(ship) {
     if (ship.isVertical === "vertical") {
     for(var i = 0; i < ship.size; i++) {
-      this.grid[ship.column + i][ship.row].hasShip = true;
-      this.grid[ship.column + i][ship.row].indicator = ship.indicator;
-    }
-  } else if (ship.isVertical === "horizontal") {
-    for(var i = 0; i < ship.size; i++) {
       this.grid[ship.column][ship.row + i].hasShip = true;
       this.grid[ship.column][ship.row + i].indicator = ship.indicator;
     }
+  } else if (ship.isVertical === "horizontal") {
+    for(var i = 0; i < ship.size; i++) {
+      this.grid[ship.column + i][ship.row].hasShip = true;
+      this.grid[ship.column + i][ship.row].indicator = ship.indicator;
+    }
   }
+}
+
+var createTable = function(grid) {
+  var output = "";
+  for(var r = 0; r < 10; r++) {
+    output += "<tr>";
+    for(var c = 0; c < 10; c++) {
+      output += '<th id="' + r + c + '" class="space"></th>';
+      if(grid[r][c].hasShip === true) {
+        $("#" + r + c).text(grid[r][c].indicator);
+      }
+      if(grid[r][c].isHit === true) {
+        if(grid[r][c].hasShip === true) {
+        $("#" + r + c).addClass(".redClass");
+        } else {
+        $("#" + r + c).addClass(".blueClass");
+        }
+      }
+    }
+    output += "</tr>";
+  }
+  return output;
 }
 
 //FRONTEND
 $(document).ready(function() {
 // CONSOLIDATE INTO ONE. ASK JOE ABOUT TIC TAC TOE VERSION
-  $("#player1grid").on('click', function() {
-    alert(event.currentTarget);
+  $("#player1grid").on('click', '.space', function(event) {
+    var space = $(event.currentTarget);
+    console.log(space[0]["id"]);
+
   });
+
+  var player1 = new Player(true);
+  var battleship = new Ship(0, 0, 4, "b","vertical");
+  player1.placeShip(battleship);
+
+
+  $("#player1grid").append(createTable(player1.grid));
 
 
   $("#carrierButton1").click(function(event) {
