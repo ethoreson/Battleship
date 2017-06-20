@@ -8,10 +8,10 @@ function Ship(row, column, size, indicator, isVertical) {
   this.sunk = false;
 }
 
-function Space() {
+function Space(indicator) {
   this.hasShip = false;
   this.isHit = false;
-  this.indicator;
+  this.indicator = indicator;
 }
 
 function Player(turn) {
@@ -81,23 +81,23 @@ Player.prototype.placeShip = function(ship) {
   }
 }
 
+
+
 //FRONTEND
 $(document).ready(function() {
   player1 = new Player(true);
   player1Grid = player1.grid;
-//  console.log(player1Grid[0][0]);
-  for (r=0; r<10; r++) {
-    for (c=0; c<10; c++) {
-    $("#testtable").append("<td id=" + r + c + "></td>");
-    }
-  }
 
-
-// CONSOLIDATE INTO ONE. ASK JOE ABOUT TIC TAC TOE VERSION
-  // $("#player1grid").on('click', function() {
-  //   alert(event.currentTarget);
-  // });
-
+// ASSIGN UNIQUE ID TO EACH TD ELEMENT:
+  // for (r=0; r<10; r++) {
+  //   $("#testtable").append("<tr>");
+  //   for (c=0; c<10; c++) {
+  //   space = new Space("class='blue'");
+  //     $("#testtable").append("</tr>");
+  //     $("#testtable").append("<td id=" + r + c + ">" + space + "</td>");
+  //   };
+  // }
+  //
 // Player.prototype.linkCoordinates = function(grid) {
 //   for (r=0;r<10;r++) {
 //     for (c=0;c<10;c++) {
@@ -120,7 +120,9 @@ $(document).ready(function() {
     var carrierIndicator = "carrier";
     var hOrV = $("input:radio[name=carrierorientation]:checked").val();
     var carrierShip = new Ship(carrierRow, carrierColumn, carrierSize, carrierIndicator, hOrV);
+    player1.placeShip(carrierShip);
     console.log(carrierShip);
+    // the space with an id of carrierRow + carrierColumn hasShip = true
 });
 
 $("#battleshipButton1").click(function(event) {
@@ -179,7 +181,17 @@ $("#destroyerButton1").click(function(event) {
   console.log(destroyerShip);
 });
 
-// //    $(".player1startupscreen").hide();
-// //    $(".player2startupscreen").show();
+$("#playbutton").click(function(event) {
+  event.preventDefault();
+  $(".player1startupscreen").hide();
+  $(".player2startupscreen").show();
+});
+
+$("#playbutton2").click(function(event) {
+  event.preventDefault();
+  $(".player2startuscreen").hide();
+  $(".player1updates").show();
+});
+
 
 });

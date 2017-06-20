@@ -1,3 +1,22 @@
+body {
+  background-image: url("../img/background.jpeg");
+  background-repeat: none;
+  background-size: cover;
+}
+
+.container {
+  background-color: white;
+}
+
+#logo {
+  margin-left: 200px;
+}
+
+.pic {
+  height: 50px;
+  width: 200px;
+}
+
 table, th, td {
   border: 1px solid black;
   padding: 10px;
@@ -12,10 +31,6 @@ th {
   border: 3px solid black;
 }
 
-#player2grid, .player2startupscreen{
-  display: none;
-}
-
 li {
   font-size: 18px;
   font-weight: bold;
@@ -28,8 +43,11 @@ form {
   margin: 10px;
 }
 
-#r0c0 {
-  background-color: blue;
-  
+.player2startupscreen, .player1updates, .player2updates{
+  display: none;
+}
 
+
+.blue {
+  background-color: blue;
 }
