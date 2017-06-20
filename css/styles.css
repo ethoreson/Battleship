@@ -63,12 +63,21 @@ table {
 }
 
 
-li {
+ul > li {
   font-size: 18px;
   font-weight: bold;
   border-top: 1px solid green;
   list-style-type: none;
   margin-bottom: 5px;
+}
+
+ol > li {
+  list-style-type: none;
+}
+
+#whoseTurn {
+  font-size: 24px;
+  font-weight: bold;
 }
 
 form {
