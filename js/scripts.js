@@ -15,11 +15,12 @@ function Space(indicator) {
   this.indicator = indicator;
 }
 
-function Player(turn) {
+function Player(turn, indicator) {
   this.turn = turn;
   this.totalHits = 0;
   this.grid = new Grid().initializeGrid();
   this.shipArray = [];
+  this.indicator = indicator;
 }
 
 // Player.prototype.getHitCount = function() {
@@ -36,7 +37,11 @@ Player.prototype.markHit = function(spaceId) {
         if (this.shipArray[i].indicator === this.grid[column][row].indicator) {
           this.shipArray[i].hits += 1;
         }
-        checkIfSunk(this.shipArray);
+        if (this.indicator === 1) {
+          checkIfSunk1(this.shipArray);
+        } else if (this.indicator === 2) {
+          checkIfSunk2(this.shipArray);
+        }
       }
     }
   } else {
@@ -101,11 +106,20 @@ Player.prototype.placeShip = function(ship) {
   }
 }
 
-var checkIfSunk = function(shipArray) {
+var checkIfSunk1 = function(shipArray) {
   shipArray.forEach(function(ship) {
     if (ship.hits === ship.size) {
       ship.sunk = true;
       $("." + ship.indicator + "status").text("Ship Status: SUNK");
+    }
+  });
+}
+
+var checkIfSunk2 = function(shipArray) {
+  shipArray.forEach(function(ship) {
+    if (ship.hits === ship.size) {
+      ship.sunk = true;
+      $("." + ship.indicator + "status2").text("Ship Status: SUNK");
     }
   });
 }
@@ -159,8 +173,8 @@ var createTable = function(grid) {
 
 //FRONTEND
 $(document).ready(function() {
-  var player1 = new Player(true);
-  var player2 = new Player(false);
+  var player1 = new Player(true, 1);
+  var player2 = new Player(false, 2);
   $("#setupTable").append(createTableForSetup(player1.grid));
 
   $("#table").on('click', '.space', function(event) {
@@ -387,13 +401,14 @@ $(document).ready(function() {
       $("form#destroyersetup2").hide();
     } else {
       alert("Not enough room");
-    }    
+    }
   });
 
   $("#playbutton2").click(function(event) {
     event.preventDefault();
     $(".player2startupscreen").hide();
     $(".player1updates").show();
+    $(".player2updates").show();
     $("#setupTable").empty();
     $("#table").append(createTable(player2.grid));
   });
