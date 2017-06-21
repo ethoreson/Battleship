@@ -23,9 +23,11 @@ function Player(turn, indicator) {
   this.indicator = indicator;
 }
 
-// Player.prototype.getHitCount = function() {
-//   return this.totalHits;
-// }
+Player.prototype.checkForWinner = function() {
+  if(this.totalHits === 17) {
+    return true;
+  } else return false;
+}
 
 Player.prototype.markHit = function(spaceId) {
   var column = spaceId[0];
@@ -33,6 +35,7 @@ Player.prototype.markHit = function(spaceId) {
   if (this.grid[column][row].isHit === false) {
     this.grid[column][row].isHit = true;
     if (this.grid[column][row].hasShip) {
+      this.totalHits++
       for(i = 0; i < this.shipArray.length; i++) {
         if (this.shipArray[i].indicator === this.grid[column][row].indicator) {
           this.shipArray[i].hits += 1;
@@ -124,15 +127,6 @@ var checkIfSunk2 = function(shipArray) {
   });
 }
 
-// Player.prototype.gameOver = function() {
-//   this.shipArray.forEach(ship) {
-//     if (ship.sunk === false) {
-//       return false;
-//     }
-//   }
-//   return true;
-// }
-
 var createTableForSetup = function(grid) {
   $("#setupTable").empty();
   var output = '<tr><th class="space"></th><th class="space">A</th><th class="space">B</th><th class="space">C</th><th class="space">D</th><th class="space">E</th><th class="space">F</th><th class="space">G</th><th class="space">H</th><th class="space">I</th><th class="space">J</th></tr>';
@@ -187,23 +181,35 @@ $(document).ready(function() {
       player2.markHit(id);
       $("#table").append(createTable(player2.grid));
       setTimeout(function() {
-        $("#table").append(createTable(player1.grid));
-        player1.turn = false;
-        player2.turn = true;
-        $("#whoseTurn").text("Player 2, Guess:");
-        $(".player1updates").toggleClass("yellow");
-        $(".player2updates").toggleClass("yellow");
-      }, 500);
-    } else if (player2.turn === true) {
+        if(player2.checkForWinner()) {
+          $("#table").empty();
+          $("#winnerName").text(1);
+          $(".gameOver").show();
+        } else {
+          $("#table").append(createTable(player1.grid));
+          player1.turn = false;
+          player2.turn = true;
+          $("#whoseTurn").text("Player 2, Guess:");
+          $(".player1updates").toggleClass("yellow");
+          $(".player2updates").toggleClass("yellow");
+          }
+        }, 500);
+      } else if (player2.turn === true) {
       player1.markHit(id);
       $("#table").append(createTable(player1.grid));
       setTimeout(function() {
-        $("#table").append(createTable(player2.grid));
-        player1.turn = true;
-        player2.turn = false;
-        $("#whoseTurn").text("Player 1, Guess:");
-        $(".player2updates").toggleClass("yellow");
-        $(".player1updates").toggleClass("yellow");
+        if(player1.checkForWinner()) {
+          $("#table").empty();
+          $("#winnerName").text(2);
+          $(".gameOver").show();
+        } else {
+          $("#table").append(createTable(player2.grid));
+          player1.turn = true;
+          player2.turn = false;
+          $("#whoseTurn").text("Player 1, Guess:");
+          $(".player2updates").toggleClass("yellow");
+          $(".player1updates").toggleClass("yellow");
+        }
       }, 500);
     }
   });
