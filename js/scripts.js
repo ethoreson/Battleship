@@ -190,6 +190,8 @@ $(document).ready(function() {
           player1.turn = false;
           player2.turn = true;
           $("#whoseTurn").text("Player 2, Guess:");
+          $(".player1updates").toggleClass("yellow");
+          $(".player2updates").toggleClass("yellow");
           }
         }, 500);
       } else if (player2.turn === true) {
@@ -205,6 +207,8 @@ $(document).ready(function() {
           player1.turn = true;
           player2.turn = false;
           $("#whoseTurn").text("Player 1, Guess:");
+          $(".player2updates").toggleClass("yellow");
+          $(".player1updates").toggleClass("yellow");
         }
       }, 500);
     }
@@ -440,6 +444,7 @@ $(document).ready(function() {
       $("#setupTable").empty();
       $("#table").append(createTable(player2.grid));
       $("#whoseTurn").text("Player 1, Guess:");
+      $(".player1updates").toggleClass("yellow");
     } else {
       alert("Please place all your ships.");
     }

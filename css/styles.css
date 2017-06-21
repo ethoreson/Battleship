@@ -4,6 +4,10 @@ body {
   background-size: cover;
 }
 
+.yellow {
+  background-color: yellow;
+}
+
 .container {
   background-color: white;
 }
