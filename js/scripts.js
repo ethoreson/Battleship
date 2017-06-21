@@ -90,11 +90,11 @@ Player.prototype.placeShip = function(ship) {
 
 var createTable = function(grid) {
   $("#table").empty();
-  var output = "";
+  var output = '<tr><th class="space"></th><th class="space">A</th><th class="space">B</th><th class="space">C</th><th class="space">D</th><th class="space">E</th><th class="space">F</th><th class="space">G</th><th class="space">H</th><th class="space">I</th><th class="space">J</th></tr>';
   for(var r = 0; r < 10; r++) {
-    output += "<tr>";
+    output += '<tr><td class="space">' + r + '</td>';
     for(var c = 0; c < 10; c++) {
-      output += '<th id="' + c + r + '" class="space ';
+      output += '<td id="' + c + r + '" class="space ';
       if(grid[c][r].hasShip === true) {
           output += 'greenClass';
       }
@@ -105,7 +105,7 @@ var createTable = function(grid) {
           output += 'blueClass';
         }
       }
-      output += '"></th>';
+      output += '"></td>';
     }
     output += "</tr>";
   }
@@ -118,8 +118,7 @@ var createTable = function(grid) {
 $(document).ready(function() {
   var player1 = new Player(true);
   var player2 = new Player(false);
-//  var battleship = new Ship(0, 0, 4, "b","vertical");
-
+  $("#table").append(createTable(player1.grid));
 
   $("#table").on('click', '.space', function(event) {
     var space = $(event.currentTarget);
@@ -129,14 +128,14 @@ $(document).ready(function() {
       $("#table").append(createTable(player2.grid));
       player1.turn = false;
       player2.turn = true;
-      $("#table").delay(1000).append(createTable(player1.grid));
+      $("#table").append(createTable(player1.grid));
       $("#whoseTurn").text("Player 2, take a guess:");
     } else if (player2.turn === true) {
       player1.markHit(id);
       $("#table").append(createTable(player1.grid));
       player1.turn = true;
       player2.turn = false;
-      $("#table").delay(1000).append(createTable(player2.grid));
+      $("#table").append(createTable(player2.grid));
       $("#whoseTurn").text("Player 1, take a guess:");
     }
   });
