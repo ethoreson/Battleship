@@ -124,6 +124,7 @@ $(document).ready(function() {
   $("#table").on('click', '.space', function(event) {
     var space = $(event.currentTarget);
     var id = space[0]["id"];
+    if(player1)
     player1.markHit(id);
     $("#table").append(createTable(player1.grid));
   });
