@@ -4,14 +4,6 @@ body {
   background-size: cover;
 }
 
-#one, #two, #three, #four, #five, #six, #seven, #eight, #nine, #ten {
-  padding-left: 30px;
-  border: 1px solid black;
-  padding-bottom: 10px;
-  padding-top: 10px;
-}
-
-
 .container {
   background-color: white;
 }
@@ -53,7 +45,6 @@ table, td {
   font-weight: bold;
 }
 
-
 h2 {
   font-size: 16px;
 }
@@ -86,12 +77,17 @@ form {
   margin: 10px;
 }
 
-.player2startupscreen, .player1updates, .player2updates{
+.player2startupscreen, .player1updates, .player2updates {
   display: none;
 }
 
 .blue {
   background-color: blue;
+}
+
+.gameOver {
+  display: none;
+  text-align: center;
 }
 
 /*.statusSunk {

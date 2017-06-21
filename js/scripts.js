@@ -23,15 +23,12 @@ function Player(turn, indicator) {
   this.indicator = indicator;
 }
 
-// Player.prototype.getHitCount = function() {
-//   return this.totalHits;
-// }
-
 Player.prototype.markHit = function(spaceId) {
   var column = spaceId[0];
   var row = spaceId[1];
   if (this.grid[column][row].isHit === false) {
     this.grid[column][row].isHit = true;
+    this.totalHits++
     if (this.grid[column][row].hasShip) {
       for(i = 0; i < this.shipArray.length; i++) {
         if (this.shipArray[i].indicator === this.grid[column][row].indicator) {
@@ -43,6 +40,11 @@ Player.prototype.markHit = function(spaceId) {
           checkIfSunk2(this.shipArray);
         }
       }
+    }
+    if(this.totalHits === 17) {
+      $("#table").empty();
+      $(".gameOver").show();
+      $("#winnerName").text(this.indicator);
     }
   } else {
     alert("Space already selected");
@@ -124,15 +126,6 @@ var checkIfSunk2 = function(shipArray) {
   });
 }
 
-// Player.prototype.gameOver = function() {
-//   this.shipArray.forEach(ship) {
-//     if (ship.sunk === false) {
-//       return false;
-//     }
-//   }
-//   return true;
-// }
-
 var createTableForSetup = function(grid) {
   $("#setupTable").empty();
   var output = '<tr><th class="space"></th><th class="space">A</th><th class="space">B</th><th class="space">C</th><th class="space">D</th><th class="space">E</th><th class="space">F</th><th class="space">G</th><th class="space">H</th><th class="space">I</th><th class="space">J</th></tr>';
@@ -191,7 +184,7 @@ $(document).ready(function() {
         player1.turn = false;
         player2.turn = true;
         $("#whoseTurn").text("Player 2, Guess:");
-      }, 500);
+      }, 1000);
     } else if (player2.turn === true) {
       player1.markHit(id);
       $("#table").append(createTable(player1.grid));
@@ -200,7 +193,7 @@ $(document).ready(function() {
         player1.turn = true;
         player2.turn = false;
         $("#whoseTurn").text("Player 1, Guess:");
-      }, 500);
+      }, 1000);
     }
   });
 
