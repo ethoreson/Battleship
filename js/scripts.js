@@ -23,6 +23,18 @@ function Player(turn, indicator) {
   this.indicator = indicator;
 }
 
+Player.prototype.checkForWinner() {
+  if(this.totalHits === 17) {
+    $("#table").empty();
+    $(".gameOver").show();
+    if(this.indicator === 2) {
+      $("#winnerName").text(1);
+    } else if (this.indicator === 1) {
+      $("#winnerName").text(2);
+    }
+  }
+}
+
 Player.prototype.markHit = function(spaceId) {
   var column = spaceId[0];
   var row = spaceId[1];
@@ -40,11 +52,6 @@ Player.prototype.markHit = function(spaceId) {
           checkIfSunk2(this.shipArray);
         }
       }
-    }
-    if(this.totalHits === 17) {
-      $("#table").empty();
-      $(".gameOver").show();
-      $("#winnerName").text(this.indicator);
     }
   } else {
     alert("Space already selected");
@@ -179,12 +186,15 @@ $(document).ready(function() {
     if (player1.turn === true) {
       player2.markHit(id);
       $("#table").append(createTable(player2.grid));
+      if(player2.checkForWinner()) {
+
+      }
       setTimeout(function() {
         $("#table").append(createTable(player1.grid));
         player1.turn = false;
         player2.turn = true;
         $("#whoseTurn").text("Player 2, Guess:");
-      }, 1000);
+      }, 500);
     } else if (player2.turn === true) {
       player1.markHit(id);
       $("#table").append(createTable(player1.grid));
@@ -193,7 +203,7 @@ $(document).ready(function() {
         player1.turn = true;
         player2.turn = false;
         $("#whoseTurn").text("Player 1, Guess:");
-      }, 1000);
+      }, 500);
     }
   });
 
