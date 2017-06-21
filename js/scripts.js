@@ -35,8 +35,8 @@ Player.prototype.markHit = function(spaceId) {
       for(i = 0; i < this.shipArray.length; i++) {
         if (this.shipArray[i].indicator === this.grid[column][row].indicator) {
           this.shipArray[i].hits += 1;
-//          checkIfSunk(this.shipArray);
         }
+        checkIfSunk(this.shipArray);
       }
     }
   } else {
@@ -104,9 +104,8 @@ Player.prototype.placeShip = function(ship) {
 var checkIfSunk = function(shipArray) {
   shipArray.forEach(function(ship) {
     if (ship.hits === ship.size) {
-      ship.sunk === true;
-      var shipStatusString = ("." + ship + "statusSunk");
-      $(shipStatusString).append("Ship Status: SUNK");
+      ship.sunk = true;
+      $("." + ship.indicator + "status").text("Ship Status: SUNK");
     }
   });
 }
@@ -201,7 +200,7 @@ $(document).ready(function() {
     } else {
       alert("Not enough room");
     }
-
+    $("form#carriersetup").hide();
   });
 
   $("#battleshipButton1").click(function(event) {
@@ -221,6 +220,7 @@ $(document).ready(function() {
     } else {
       alert("Not enough room");
     }
+    $("form#battleshipsetup").hide();
   });
 
   $("#cruiserButton1").click(function(event) {
@@ -240,11 +240,11 @@ $(document).ready(function() {
     } else {
       alert("Not enough room");
     }
+    $("form#cruisersetup").hide();
   });
 
   $("#submarineButton1").click(function(event) {
     event.preventDefault();
-
     var submarineRowString = $(".submarine_row").val();
     var submarineRow = (parseInt(submarineRowString) - 1);
     var submarineColumnString = $(".submarine_col").val();
@@ -260,6 +260,7 @@ $(document).ready(function() {
     } else {
       alert("Not enough room");
     }
+    $("form#submarinesetup").hide();
   });
 
   $("#destroyerButton1").click(function(event) {
@@ -279,6 +280,7 @@ $(document).ready(function() {
     } else {
       alert("Not enough room");
     }
+    $("form#destroyersetup").hide();
   });
 
   $("#player2setup").click(function(event) {
@@ -305,7 +307,7 @@ $(document).ready(function() {
     } else {
       alert("Not enough room");
     }
-
+    $("form#carriersetup2").hide();
   });
 
   $("#battleshipButton2").click(function(event) {
@@ -325,6 +327,7 @@ $(document).ready(function() {
     } else {
       alert("Not enough room");
     }
+    $("form#battleshipsetup2").hide();
   });
 
   $("#cruiserButton2").click(function(event) {
@@ -344,6 +347,7 @@ $(document).ready(function() {
     } else {
       alert("Not enough room");
     }
+    $("form#cruisersetup2").hide();
   });
 
   $("#submarineButton2").click(function(event) {
@@ -363,6 +367,7 @@ $(document).ready(function() {
     } else {
       alert("Not enough room");
     }
+    $("form#submarinesetup2").hide();
   });
 
   $("#destroyerButton2").click(function(event) {
@@ -382,6 +387,7 @@ $(document).ready(function() {
     } else {
       alert("Not enough room");
     }
+    $("form#destroyersetup2").hide();
   });
 
   $("#playbutton2").click(function(event) {
