@@ -94,11 +94,15 @@ form {
   background-color: blue;
 }
 
-.statusSunk {
-  color: red;
-  font-weight: bold;
+#destroyerstatussunk {
+  display: none;
 }
 
-.statusSafe {
+/*.statusSunk {
+  color: red;
+  font-weight: bold;
+}*/
+
+/*.statusSafe {
   color: green;
-}
+}*/
