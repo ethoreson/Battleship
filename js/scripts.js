@@ -122,7 +122,7 @@ var checkIfSunk = function(shipArray) {
 // }
 
 var createTableForSetup = function(grid) {
-  $("#table").empty();
+  $("#setupTable").empty();
   var output = '<tr><th class="space"></th><th class="space">A</th><th class="space">B</th><th class="space">C</th><th class="space">D</th><th class="space">E</th><th class="space">F</th><th class="space">G</th><th class="space">H</th><th class="space">I</th><th class="space">J</th></tr>';
   for(var r = 0; r < 10; r++) {
     output += '<tr><td class="space">' + (r+1) + '</td>';
@@ -163,7 +163,7 @@ var createTable = function(grid) {
 $(document).ready(function() {
   var player1 = new Player(true);
   var player2 = new Player(false);
-  $("#table").append(createTableForSetup(player1.grid));
+  $("#setupTable").append(createTableForSetup(player1.grid));
 
   $("#table").on('click', '.space', function(event) {
     var space = $(event.currentTarget);
@@ -198,7 +198,7 @@ $(document).ready(function() {
     player1.shipArray.push(carrierShip);
     if (player1.checkPlacement(carrierShip)) {
       player1.placeShip(carrierShip);
-      $("#table").append(createTableForSetup(player1.grid));
+      $("#setupTable").append(createTableForSetup(player1.grid));
     } else {
       alert("Not enough room");
     }
@@ -218,7 +218,7 @@ $(document).ready(function() {
     player1.shipArray.push(battleshipShip);
     if (player1.checkPlacement(battleshipShip)) {
       player1.placeShip(battleshipShip);
-      $("#table").append(createTableForSetup(player1.grid));
+      $("#setupTable").append(createTableForSetup(player1.grid));
     } else {
       alert("Not enough room");
     }
@@ -238,7 +238,7 @@ $(document).ready(function() {
     player1.shipArray.push(cruiserShip);
     if (player1.checkPlacement(cruiserShip)) {
       player1.placeShip(cruiserShip);
-      $("#table").append(createTableForSetup(player1.grid));
+      $("#setupTable").append(createTableForSetup(player1.grid));
     } else {
       alert("Not enough room");
     }
@@ -258,7 +258,7 @@ $(document).ready(function() {
     player1.shipArray.push(submarineShip);
     if (player1.checkPlacement(submarineShip)) {
       player1.placeShip(submarineShip);
-      $("#table").append(createTableForSetup(player1.grid));
+      $("#setupTable").append(createTableForSetup(player1.grid));
     } else {
       alert("Not enough room");
     }
@@ -278,7 +278,7 @@ $(document).ready(function() {
     player1.shipArray.push(destroyerShip);
     if (player1.checkPlacement(destroyerShip)) {
       player1.placeShip(destroyerShip);
-      $("#table").append(createTableForSetup(player1.grid));
+      $("#setupTable").append(createTableForSetup(player1.grid));
     } else {
       alert("Not enough room");
     }
@@ -289,8 +289,7 @@ $(document).ready(function() {
     event.preventDefault();
     $(".player1startupscreen").hide();
     $(".player2startupscreen").show();
-    $("#table").empty();
-    $("#table").append(createTableForSetup(player2.grid));
+    $("#setupTable").append(createTableForSetup(player2.grid));
   });
 
   $("#carrierButton2").click(function(event) {
@@ -306,7 +305,7 @@ $(document).ready(function() {
     player2.shipArray.push(carrierShip2);
     if (player2.checkPlacement(carrierShip2)) {
       player2.placeShip(carrierShip2);
-      $("#table").append(createTableForSetup(player2.grid));
+      $("#setupTable").append(createTableForSetup(player2.grid));
     } else {
       alert("Not enough room");
     }
@@ -326,7 +325,7 @@ $(document).ready(function() {
     player2.shipArray.push(battleshipShip2);
     if (player2.checkPlacement(battleshipShip2)) {
       player2.placeShip(battleshipShip2);
-      $("#table").append(createTableForSetup(player2.grid));
+      $("#setupTable").append(createTableForSetup(player2.grid));
     } else {
       alert("Not enough room");
     }
@@ -346,7 +345,7 @@ $(document).ready(function() {
     player2.shipArray.push(cruiserShip2);
     if (player2.checkPlacement(cruiserShip2)) {
       player2.placeShip(cruiserShip2);
-      $("#table").append(createTableForSetup(player2.grid));
+      $("#setupTable").append(createTableForSetup(player2.grid));
     } else {
       alert("Not enough room");
     }
@@ -366,7 +365,7 @@ $(document).ready(function() {
     player2.shipArray.push(submarineShip2);
     if (player2.checkPlacement(submarineShip2)) {
       player2.placeShip(submarineShip2);
-      $("#table").append(createTableForSetup(player2.grid));
+      $("#setupTable").append(createTableForSetup(player2.grid));
     } else {
       alert("Not enough room");
     }
@@ -386,7 +385,7 @@ $(document).ready(function() {
     player2.shipArray.push(destroyerShip2);
     if (player2.checkPlacement(destroyerShip2)) {
       player2.placeShip(destroyerShip2);
-      $("#table").append(createTableForSetup(player2.grid));
+      $("#setupTable").append(createTableForSetup(player2.grid));
     } else {
       alert("Not enough room");
     }
@@ -397,6 +396,7 @@ $(document).ready(function() {
     event.preventDefault();
     $(".player2startupscreen").hide();
     $(".player1updates").show();
+    $("#setupTable").empty();
     $("#table").append(createTable(player2.grid));
   });
 });
