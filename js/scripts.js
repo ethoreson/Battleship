@@ -101,13 +101,13 @@ Player.prototype.placeShip = function(ship) {
   }
 }
 
-var checkIfSunk = function(shipArray) { //when any ship is hit:
-  shipArray.forEach(function(ship) { // for each ship:
-    if (ship.hits === ship.size) { // if that ship's hits equal its length
-      ship.sunk = true; //ship is sunk, and
-      var whichShip = ("'li." + ship.indicator + "statussunk'");
+var checkIfSunk = function(shipArray) {
+  shipArray.forEach(function(ship) {
+    if (ship.hits === ship.size) {
+      ship.sunk = true;
+      var whichShip = ("'li." + ship.indicator + "status'");
       console.log(whichShip);
-      $(whichShip).append();
+      $(whichShip).append("Ship Status: SUNK");
     }
   });
 }
