@@ -185,6 +185,7 @@ $(document).ready(function() {
           $("#table").empty();
           $("#winnerName").text(1);
           $(".gameOver").show();
+          $("#whoseTurn").hide();
         } else {
           $("#table").append(createTable(player1.grid));
           player1.turn = false;
@@ -202,6 +203,7 @@ $(document).ready(function() {
           $("#table").empty();
           $("#winnerName").text(2);
           $(".gameOver").show();
+          $("#whoseTurn").hide();
         } else {
           $("#table").append(createTable(player2.grid));
           player1.turn = true;
