@@ -88,7 +88,15 @@ form {
   display: none;
 }
 
-
 .blue {
   background-color: blue;
+}
+
+.statusSunk {
+  color: red;
+  font-weight: bold;
+}
+
+.statusSafe {
+  color: green;
 }

@@ -4,6 +4,7 @@ function Ship(row, column, size, indicator, isVertical) {
   this.column = column;
   this.isVertical = isVertical;
   this.size = size;
+  this.hits = hits;
   this.indicator = indicator;
   this.sunk = false;
 }
@@ -18,6 +19,7 @@ function Player(turn) {
   this.turn = turn;
   this.totalHits = 0;
   this.grid = new Grid().initializeGrid();
+  this.shipArray = [];
 }
 
 // Player.prototype.getHitCount = function() {
@@ -27,7 +29,19 @@ function Player(turn) {
 Player.prototype.markHit = function(spaceId) {
   var column = spaceId[0];
   var row = spaceId[1];
-  this.grid[column][row].isHit = true;
+  if (this.grid[column][row].isHit === false) {
+    this.grid[column][row].isHit = true;
+    if (this.grid[column][row].hasShip) {
+      for(i = 0; i < shipArray.length; i++) {
+        if (shipArray[i].indicator === this.grid[column][row].indicator) {
+          shipArray[i].hits += 1;
+          checkIfSunk(shipArray);
+        }
+      }
+    }
+  } else {
+    alert("Space already selected");
+  }
 }
 
 function Grid() {
@@ -87,14 +101,23 @@ Player.prototype.placeShip = function(ship) {
   }
 }
 
-Ship.prototype.checkIfSunk = function(shipArray) {
+var checkIfSunk = function(shipArray) {
   shipArray.forEach(function(ship) {
-    if (ship.sunk === true) {
-      return ship.indicator;
-      var shipStatusString = ("#" + ship + "status");
-      $(shipStatusString).append("SUNK");
+    if (ship.hits === ship.size) {
+      ship.sunk === true;
+      var shipStatusString = ("." + ship + "statusSunk");
+      $(shipStatusString).append("Ship Status: SUNK");
     }
   });
+}
+
+Player.prototype.gameOver = function() {
+  this.shipArray.forEach(ship) {
+    if (ship.sunk === false) {
+      return false;
+    }
+  }
+  return true;
 }
 
 var createTable = function(grid) {
@@ -127,8 +150,6 @@ var createTable = function(grid) {
 $(document).ready(function() {
   var player1 = new Player(true);
   var player2 = new Player(false);
-  var player1ShipArray = [];
-  var player2ShipArray = [];
 //  var battleship = new Ship(0, 0, 4, "b","vertical");
 
 
@@ -162,7 +183,7 @@ $(document).ready(function() {
     var carrierIndicator = "carrier";
     var hOrV = $("input:radio[name=carrierorientation]:checked").val();
     var carrierShip = new Ship(carrierRow, carrierColumn, carrierSize, carrierIndicator, hOrV);
-    player1ShipArray.push(carrierShip);
+    player1.shipArray.push(carrierShip);
     if (player1.checkPlacement(carrierShip)) {
       player1.placeShip(carrierShip);
       $("#table").append(createTable(player1.grid));
@@ -174,7 +195,6 @@ $(document).ready(function() {
 
   $("#battleshipButton1").click(function(event) {
     event.preventDefault();
-
     var battleshipRowString = $(".battleship_row").val();
     var battleshipRow = (parseInt(battleshipRowString) - 1);
     var battleshipColumnString = $(".battleship_col").val();
@@ -183,7 +203,7 @@ $(document).ready(function() {
     var battleshipIndicator = "battleship";
     var hOrV = $("input:radio[name=battleshiporientation]:checked").val();
     var battleshipShip = new Ship(battleshipRow, battleshipColumn, battleshipSize, battleshipIndicator, hOrV);
-    player1ShipArray.push(battleshipShip);
+    player1.shipArray.push(battleshipShip);
     if (player1.checkPlacement(battleshipShip)) {
       player1.placeShip(battleshipShip);
       $("#table").append(createTable(player1.grid));
@@ -194,7 +214,6 @@ $(document).ready(function() {
 
   $("#cruiserButton1").click(function(event) {
     event.preventDefault();
-
     var cruiserRowString = $(".cruiser_row").val();
     var cruiserRow = (parseInt(cruiserRowString) - 1);
     var cruiserColumnString = $(".cruiser_col").val();
@@ -203,7 +222,7 @@ $(document).ready(function() {
     var cruiserIndicator = "cruiser";
     var hOrV = $("input:radio[name=cruiserorientation]:checked").val();
     var cruiserShip = new Ship(cruiserRow, cruiserColumn, cruiserSize, cruiserIndicator, hOrV);
-    player1ShipArray.push(cruiserShip);
+    player1.shipArray.push(cruiserShip);
     if (player1.checkPlacement(cruiserShip)) {
       player1.placeShip(cruiserShip);
       $("#table").append(createTable(player1.grid));
@@ -223,7 +242,7 @@ $(document).ready(function() {
     var submarineIndicator = "submarine";
     var hOrV = $("input:radio[name=submarineorientation]:checked").val();
     var submarineShip = new Ship(submarineRow, submarineColumn, submarineSize, submarineIndicator, hOrV);
-    player1ShipArray.push(submarineShip);
+    player1.shipArray.push(submarineShip);
     if (player1.checkPlacement(submarineShip)) {
       player1.placeShip(submarineShip);
       $("#table").append(createTable(player1.grid));
@@ -242,8 +261,7 @@ $(document).ready(function() {
     var destroyerIndicator = "destroyer";
     var hOrV = $("input:radio[name=destroyerorientation]:checked").val();
     var destroyerShip = new Ship(destroyerRow, destroyerColumn, destroyerSize, destroyerIndicator, hOrV);
-    player1ShipArray.push(destroyerShip);
-      console.log(player1ShipArray);
+    player1.shipArray.push(destroyerShip);
     if (player1.checkPlacement(destroyerShip)) {
       player1.placeShip(destroyerShip);
       $("#table").append(createTable(player1.grid));
@@ -269,7 +287,7 @@ $(document).ready(function() {
     var carrierIndicator = "carrier";
     var hOrV = $("input:radio[name=carrierorientation2]:checked").val();
     var carrierShip2 = new Ship(carrierRow, carrierColumn, carrierSize, carrierIndicator, hOrV);
-    player2ShipArray.push(carrierShip2);
+    player2.shipArray.push(carrierShip2);
     if (player2.checkPlacement(carrierShip2)) {
       player2.placeShip(carrierShip2);
       $("#table").append(createTable(player2.grid));
@@ -289,7 +307,7 @@ $(document).ready(function() {
     var battleshipIndicator = "battleship";
     var hOrV = $("input:radio[name=battleshiporientation2]:checked").val();
     var battleshipShip2 = new Ship(battleshipRow, battleshipColumn, battleshipSize, battleshipIndicator, hOrV);
-    player2ShipArray.push(battleshipShip2);
+    player2.shipArray.push(battleshipShip2);
     if (player2.checkPlacement(battleshipShip2)) {
       player2.placeShip(battleshipShip2);
       $("#table").append(createTable(player2.grid));
@@ -308,7 +326,7 @@ $(document).ready(function() {
     var cruiserIndicator = "cruiser";
     var hOrV = $("input:radio[name=cruiserorientation2]:checked").val();
     var cruiserShip2 = new Ship(cruiserRow, cruiserColumn, cruiserSize, cruiserIndicator, hOrV);
-    player2ShipArray.push(cruiserShip2);
+    player2.shipArray.push(cruiserShip2);
     if (player2.checkPlacement(cruiserShip2)) {
       player2.placeShip(cruiserShip2);
       $("#table").append(createTable(player2.grid));
@@ -319,7 +337,6 @@ $(document).ready(function() {
 
   $("#submarineButton2").click(function(event) {
   event.preventDefault();
-
   var submarineRowString = $(".submarine_row2").val();
   var submarineRow = (parseInt(submarineRowString) - 1);
   var submarineColumnString = $(".submarine_col2").val();
@@ -328,7 +345,7 @@ $(document).ready(function() {
   var submarineIndicator = "submarine";
   var hOrV = $("input:radio[name=submarineorientation2]:checked").val();
   var submarineShip2 = new Ship(submarineRow, submarineColumn, submarineSize, submarineIndicator, hOrV);
-  player2ShipArray.push(submarineShip2);
+  player2.shipArray.push(submarineShip2);
   if (player2.checkPlacement(submarineShip2)) {
     player2.placeShip(submarineShip2);
     $("#table").append(createTable(player2.grid));
@@ -347,8 +364,7 @@ $(document).ready(function() {
     var destroyerIndicator = "destroyer";
     var hOrV = $("input:radio[name=destroyerorientation2]:checked").val();
     var destroyerShip2 = new Ship(destroyerRow, destroyerColumn, destroyerSize, destroyerIndicator, hOrV);
-    player2ShipArray.push(destroyerShip2);
-    console.log(player2ShipArray);
+    player2.shipArray.push(destroyerShip2);
     if (player2.checkPlacement(destroyerShip2)) {
       player2.placeShip(destroyerShip2);
       $("#table").append(createTable(player2.grid));
