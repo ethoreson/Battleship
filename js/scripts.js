@@ -23,16 +23,10 @@ function Player(turn, indicator) {
   this.indicator = indicator;
 }
 
-Player.prototype.checkForWinner() {
+Player.prototype.checkForWinner = function() {
   if(this.totalHits === 17) {
-    $("#table").empty();
-    $(".gameOver").show();
-    if(this.indicator === 2) {
-      $("#winnerName").text(1);
-    } else if (this.indicator === 1) {
-      $("#winnerName").text(2);
-    }
-  }
+    return true;
+  } else return false;
 }
 
 Player.prototype.markHit = function(spaceId) {
@@ -40,8 +34,8 @@ Player.prototype.markHit = function(spaceId) {
   var row = spaceId[1];
   if (this.grid[column][row].isHit === false) {
     this.grid[column][row].isHit = true;
-    this.totalHits++
     if (this.grid[column][row].hasShip) {
+      this.totalHits++
       for(i = 0; i < this.shipArray.length; i++) {
         if (this.shipArray[i].indicator === this.grid[column][row].indicator) {
           this.shipArray[i].hits += 1;
@@ -186,23 +180,32 @@ $(document).ready(function() {
     if (player1.turn === true) {
       player2.markHit(id);
       $("#table").append(createTable(player2.grid));
-      if(player2.checkForWinner()) {
-
-      }
       setTimeout(function() {
-        $("#table").append(createTable(player1.grid));
-        player1.turn = false;
-        player2.turn = true;
-        $("#whoseTurn").text("Player 2, Guess:");
-      }, 500);
-    } else if (player2.turn === true) {
+        if(player2.checkForWinner()) {
+          $("#table").empty();
+          $("#winnerName").text(1);
+          $(".gameOver").show();
+        } else {
+          $("#table").append(createTable(player1.grid));
+          player1.turn = false;
+          player2.turn = true;
+          $("#whoseTurn").text("Player 2, Guess:");
+          }
+        }, 500);
+      } else if (player2.turn === true) {
       player1.markHit(id);
       $("#table").append(createTable(player1.grid));
       setTimeout(function() {
-        $("#table").append(createTable(player2.grid));
-        player1.turn = true;
-        player2.turn = false;
-        $("#whoseTurn").text("Player 1, Guess:");
+        if(player1.checkForWinner()) {
+          $("#table").empty();
+          $("#winnerName").text(2);
+          $(".gameOver").show();
+        } else {
+          $("#table").append(createTable(player2.grid));
+          player1.turn = true;
+          player2.turn = false;
+          $("#whoseTurn").text("Player 1, Guess:");
+        }
       }, 500);
     }
   });
