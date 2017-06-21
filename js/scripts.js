@@ -105,9 +105,7 @@ var checkIfSunk = function(shipArray) {
   shipArray.forEach(function(ship) {
     if (ship.hits === ship.size) {
       ship.sunk = true;
-      var whichShip = ("'li." + ship.indicator + "status'");
-      console.log(whichShip);
-      $(whichShip).append("Ship Status: SUNK");
+      $("." + ship.indicator + "status").text("Ship Status: SUNK");
     }
   });
 }
