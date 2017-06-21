@@ -172,17 +172,21 @@ $(document).ready(function() {
     if (player1.turn === true) {
       player2.markHit(id);
       $("#table").append(createTable(player2.grid));
-      player1.turn = false;
-      player2.turn = true;
-      $("#table").delay(1000).append(createTable(player1.grid));
-      $("#whoseTurn").text("Player 2, Guess:");
+      setTimeout(function() {
+        $("#table").append(createTable(player1.grid));
+        player1.turn = false;
+        player2.turn = true;
+        $("#whoseTurn").text("Player 2, Guess:");
+      }, 500);
     } else if (player2.turn === true) {
       player1.markHit(id);
       $("#table").append(createTable(player1.grid));
-      player1.turn = true;
-      player2.turn = false;
-      $("#table").delay(1000).append(createTable(player2.grid));
-      $("#whoseTurn").text("Player 1, Guess:");
+      setTimeout(function() {
+        $("#table").append(createTable(player2.grid));
+        player1.turn = true;
+        player2.turn = false;
+        $("#whoseTurn").text("Player 1, Guess:");
+      }, 500);
     }
   });
 
@@ -414,8 +418,9 @@ $(document).ready(function() {
       $(".player1updates").show();
       $("#setupTable").empty();
       $("#table").append(createTable(player2.grid));
+      $("#whoseTurn").text("Player 1, Guess:");
     } else {
       alert("Please place all your ships.");
     }
   });
-  });
+});
