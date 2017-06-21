@@ -122,11 +122,14 @@ var checkIfSunk = function(shipArray) {
 
 var createTable = function(grid) {
   $("#table").empty();
-  var output = "";
+  var output = '<tr><th class="space"></th><th class="space">A</th><th class="space">B</th><th class="space">C</th><th class="space">D</th><th class="space">E</th><th class="space">F</th><th class="space">G</th><th class="space">H</th><th class="space">I</th><th class="space">J</th></tr>';
   for(var r = 0; r < 10; r++) {
-    output += "<tr>";
+    output += '<tr><td class="space">' + r + '</td>';
     for(var c = 0; c < 10; c++) {
-      output += '<th id="' + c + r + '" class="space ';
+      output += '<td id="' + c + r + '" class="space ';
+      if(grid[c][r].hasShip === true) {
+          output += 'greenClass';
+      }
       if(grid[c][r].isHit === true) {
         if(grid[c][r].hasShip === true) {
           output += 'redClass"';
@@ -150,8 +153,8 @@ var createTable = function(grid) {
 $(document).ready(function() {
   var player1 = new Player(true);
   var player2 = new Player(false);
-//  var battleship = new Ship(0, 0, 4, "b","vertical");
 
+  $("#table").append(createTable(player1.grid));
 
   $("#table").on('click', '.space', function(event) {
     var space = $(event.currentTarget);
