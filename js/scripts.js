@@ -4,7 +4,7 @@ function Ship(row, column, size, indicator, isVertical) {
   this.column = column;
   this.isVertical = isVertical;
   this.size = size;
-  this.hits = hits;
+  this.hits = 0;
   this.indicator = indicator;
   this.sunk = false;
 }
@@ -111,14 +111,14 @@ var checkIfSunk = function(shipArray) {
   });
 }
 
-Player.prototype.gameOver = function() {
-  this.shipArray.forEach(ship) {
-    if (ship.sunk === false) {
-      return false;
-    }
-  }
-  return true;
-}
+// Player.prototype.gameOver = function() {
+//   this.shipArray.forEach(ship) {
+//     if (ship.sunk === false) {
+//       return false;
+//     }
+//   }
+//   return true;
+// }
 
 var createTable = function(grid) {
   $("#table").empty();
@@ -127,17 +127,17 @@ var createTable = function(grid) {
     output += "<tr>";
     for(var c = 0; c < 10; c++) {
       output += '<th id="' + c + r + '" class="space ';
-      if(grid[c][r].hasShip === true) {
-          output += 'greenClass';
-      }
       if(grid[c][r].isHit === true) {
         if(grid[c][r].hasShip === true) {
-          output += 'redClass';
+          output += 'redClass"';
         } else {
-          output += 'blueClass';
+          output += 'blueClass"';
         }
       }
-      output += '"></th>';
+      if(grid[c][r].hasShip === true) {
+          output += ' text="' + grid[c][r].indicator + '"';
+      }
+      output += '></th>';
     }
     output += "</tr>";
   }
