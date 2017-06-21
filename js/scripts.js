@@ -387,7 +387,7 @@ $(document).ready(function() {
       $("form#destroyersetup2").hide();
     } else {
       alert("Not enough room");
-    }    
+    }
   });
 
   $("#playbutton2").click(function(event) {
@@ -396,5 +396,6 @@ $(document).ready(function() {
     $(".player1updates").show();
     $("#setupTable").empty();
     $("#table").append(createTable(player2.grid));
+    $("#whoseTurn").text("Player 1, Guess:");
   });
 });
