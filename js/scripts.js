@@ -124,7 +124,7 @@ var createTable = function(grid) {
   $("#table").empty();
   var output = '<tr><th class="space"></th><th class="space">A</th><th class="space">B</th><th class="space">C</th><th class="space">D</th><th class="space">E</th><th class="space">F</th><th class="space">G</th><th class="space">H</th><th class="space">I</th><th class="space">J</th></tr>';
   for(var r = 0; r < 10; r++) {
-    output += '<tr><td class="space">' + r + '</td>';
+    output += '<tr><td class="space">' + (r+1) + '</td>';
     for(var c = 0; c < 10; c++) {
       output += '<td id="' + c + r + '" class="space ';
       if(grid[c][r].hasShip === true) {
@@ -132,15 +132,15 @@ var createTable = function(grid) {
       }
       if(grid[c][r].isHit === true) {
         if(grid[c][r].hasShip === true) {
-          output += 'redClass"';
+          output += 'redClass';
         } else {
-          output += 'blueClass"';
+          output += 'blueClass';
         }
       }
-      if(grid[c][r].hasShip === true) {
-          output += ' text="' + grid[c][r].indicator + '"';
-      }
-      output += '></th>';
+      // if(grid[c][r].hasShip === true) {
+      //     output += ' text="' + grid[c][r].indicator + '"';
+      // }
+      output += '"></td>';
     }
     output += "</tr>";
   }
