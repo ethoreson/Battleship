@@ -278,6 +278,8 @@ $(document).ready(function() {
     $(".player1startupscreen").hide();
     $(".player2startupscreen").show();
     $("#table").empty();
+    $("#table").append(createTable(player2.grid));
+
   });
 
   $("#carrierButton2").click(function(event) {
