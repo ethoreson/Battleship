@@ -65,7 +65,7 @@ table {
 }
 
 
-ul > li {
+li {
   font-size: 18px;
   font-weight: bold;
   border-top: 1px solid green;
@@ -90,7 +90,15 @@ form {
   display: none;
 }
 
-
 .blue {
   background-color: blue;
+}
+
+.statusSunk {
+  color: red;
+  font-weight: bold;
+}
+
+.statusSafe {
+  color: green;
 }
