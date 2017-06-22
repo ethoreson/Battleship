@@ -23,6 +23,9 @@ function Player(turn, indicator) {
   this.indicator = indicator;
 }
 
+var hitSound = new Audio("sounds/hit.wav");
+var missSound = new Audio("sounds/miss.wav");
+
 Player.prototype.checkForWinner = function() {
   if(this.totalHits === 17) {
     return true;
