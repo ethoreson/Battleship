@@ -90,8 +90,16 @@ form {
   margin: 10px;
 }
 
+.player1startupscreen {
+  width: 210px;
+}
+
 .player2startupscreen, .player1updates, .player2updates {
   display: none;
+}
+
+.player2updates {
+  width: 200px;
 }
 
 .blue {
