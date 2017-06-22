@@ -5,7 +5,7 @@ body {
 }
 
 .yellow {
-  background-color: yellow;
+  background-color: #ffe8bf;
 }
 
 .container {
@@ -103,11 +103,11 @@ form {
   text-align: center;
 }
 
-/*.statusSunk {
-  color: red;
-  font-weight: bold;
-}*/
-
-/*.statusSafe {
+.carrierStatusSafe1, .battleshipStatusSafe1, .cruiserStatusSafe1, .submarineStatusSafe1, .destroyerStatusSafe1, .carrierStatusSafe2, .battleshipStatusSafe2, .cruiserStatusSafe2, .submarineStatusSafe2, .destroyerStatusSafe2 {
   color: green;
-}*/
+}
+
+.carrierStatusSunk1, .battleshipStatusSunk1, .cruiserStatusSunk1, .submarineStatusSunk1, .destroyerStatusSunk1, .carrierStatusSunk2, .battleshipStatusSunk2, .cruiserStatusSunk2, .submarineStatusSunk2, .destroyerStatusSunk2 {
+  color: red;
+  display: none;
+}

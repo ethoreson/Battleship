@@ -23,6 +23,9 @@ function Player(turn, indicator) {
   this.indicator = indicator;
 }
 
+var hitSound = new Audio("sounds/hit.wav");
+var missSound = new Audio("sounds/miss.wav");
+
 Player.prototype.checkForWinner = function() {
   if(this.totalHits === 17) {
     return true;
@@ -39,6 +42,7 @@ Player.prototype.markHit = function(spaceId) {
       for(i = 0; i < this.shipArray.length; i++) {
         if (this.shipArray[i].indicator === this.grid[column][row].indicator) {
           this.shipArray[i].hits += 1;
+          hitSound.play();
         }
         if (this.indicator === 1) {
           checkIfSunk1(this.shipArray);
@@ -113,7 +117,8 @@ var checkIfSunk1 = function(shipArray) {
   shipArray.forEach(function(ship) {
     if (ship.hits === ship.size) {
       ship.sunk = true;
-      $("." + ship.indicator + "status").text("Ship Status: SUNK");
+      $("." + ship.indicator + "StatusSafe1").hide();
+      $("." + ship.indicator + "StatusSunk1").show();
     }
   });
 }
@@ -122,7 +127,8 @@ var checkIfSunk2 = function(shipArray) {
   shipArray.forEach(function(ship) {
     if (ship.hits === ship.size) {
       ship.sunk = true;
-      $("." + ship.indicator + "status2").text("Ship Status: SUNK");
+      $("." + ship.indicator + "StatusSafe2").hide();
+      $("." + ship.indicator + "StatusSunk2").show();
     }
   });
 }
