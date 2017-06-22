@@ -12,7 +12,7 @@
       <img id="logo" src="img/logo.png">
       <div class="row">
         <div class="col-lg-2">
-
+          <!-- Player 1 ship setup -->
           <div class="player1startupscreen">
             <ul>
             <li>Player 1, Place Your Ships</li>
@@ -224,12 +224,11 @@
                   <input type="radio" name="destroyerorientation" value="vertical">vertical</input>
                 </label>
               </div>
-            <button id="destroyerButton1" type="submit" class="btn">Submit</button>
-          </form>
-          <button id="player2setup" type="submit" class="btn">Player 2 setup</button>
-        </div>
-
-
+              <button id="destroyerButton1" type="submit" class="btn">Submit</button>
+            </form>
+            <button id="player2setup" type="submit" class="btn">Player 2 setup</button>
+          </div>
+          <!-- Player2 place ship section -->
           <div class="player2startupscreen" id="showthis">
             <li>Player 2, Place Your Ships</li>
             <form id="carriersetup2">
@@ -441,11 +440,11 @@
                   <input type="radio" name="destroyerorientation2" value="vertical">vertical</input>
                 </label>
               </div>
-            <button id="destroyerButton2" type="submit" class="btn">Submit</button>
-          </form>
-          <button id="playbutton2" type="submit" class="btn">Play!</button>
+              <button id="destroyerButton2" type="submit" class="btn">Submit</button>
+            </form>
+            <button id="playbutton2" type="submit" class="btn">Play!</button>
           </div>
-        </ul>
+          </ul>
 
       <div class="player1updates">
         <ol id="player1-col">
@@ -475,7 +474,7 @@
           <table id="setupTable"></table>
           <table id="table"></table>
           <div class="gameOver">
-            <h1>Congratulations Player<span id="winnerName"></span>, you Win!</h1>
+            <h1>Congratulations Player <span id="winnerName"></span>, you Win!</h1>
             <br />
             <input type="button" value="Play Again" onClick="window.location.reload()">
           </div>
