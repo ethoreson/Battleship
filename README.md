@@ -1,6 +1,6 @@
 # _Battleship_
 
-#### _{Brief description of application}, {Date of current version}_
+#### _This is an online guessing game for two players. June, 22, 2017_
 
 #### By _**Joe Kramer, Esvethlynna Pangelinan, Emilie Thoreson, Anna Timofeeva**_
 
