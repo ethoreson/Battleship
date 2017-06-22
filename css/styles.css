@@ -8,6 +8,9 @@ body {
   background-color: #ffe8bf;
 }
 
+.col-lg-2 {
+  padding-right: 5px;
+}
 .container {
   background-color: white;
 }
