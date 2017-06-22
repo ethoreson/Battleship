@@ -113,7 +113,8 @@ var checkIfSunk1 = function(shipArray) {
   shipArray.forEach(function(ship) {
     if (ship.hits === ship.size) {
       ship.sunk = true;
-      $("." + ship.indicator + "status").text("Ship Status: SUNK");
+      $("." + ship.indicator + "StatusSafe1").hide();
+      $("." + ship.indicator + "StatusSunk1").show();
     }
   });
 }
@@ -122,7 +123,8 @@ var checkIfSunk2 = function(shipArray) {
   shipArray.forEach(function(ship) {
     if (ship.hits === ship.size) {
       ship.sunk = true;
-      $("." + ship.indicator + "status2").text("Ship Status: SUNK");
+      $("." + ship.indicator + "StatusSafe2").hide();
+      $("." + ship.indicator + "StatusSunk2").show();
     }
   });
 }
