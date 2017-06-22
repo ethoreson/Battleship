@@ -12,6 +12,10 @@ body {
   background-color: white;
 }
 
+.col-lg-3 {
+  padding-left: 75px;
+}
+
 #logo {
   margin-left: 200px;
 }
